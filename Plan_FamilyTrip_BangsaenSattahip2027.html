@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0891b2">
+<title>🏖️ ทริปครอบครัว บางแสน-สัตหีบ 2027</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f1f5f9;color:#18181b;min-height:100vh}
+.hdr{background:linear-gradient(135deg,#0891b2 0%,#ea580c 100%);color:#fff;padding:10px 12px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+.ht{font-size:14px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between}
+.hdr-btns{display:flex;gap:6px}
+.share-btn{background:rgba(255,255,255,.2);border:none;color:#fff;font-size:11px;padding:4px 10px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:4px}
+.share-btn:active{background:rgba(255,255,255,.35)}
+.sync-status{font-size:10px;color:rgba(255,255,255,.75);margin:0 0 5px;text-align:right}
+.tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:7px 11px;border-radius:7px 7px 0 0;font-size:12px;font-weight:500;cursor:pointer;color:rgba(255,255,255,.55);background:rgba(255,255,255,.1);border:none;white-space:nowrap;transition:.15s}
+.tab.on{background:#fff;color:#0891b2}
+.wrap{max-width:480px;margin:0 auto}
+.scr{display:none;padding:11px}
+.scr.on{display:block}
+.kg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:11px;margin-top:4px}
+.kc{background:#fff;border-radius:10px;padding:10px 12px;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.kl{font-size:10px;color:#71717a;margin-bottom:2px}
+.kv{font-size:20px;font-weight:700}
+.ks{font-size:10px;color:#71717a;margin-top:1px}
+.sec{font-size:10px;font-weight:600;color:#71717a;text-transform:uppercase;letter-spacing:.05em;margin:13px 0 7px;display:flex;justify-content:space-between;align-items:center}
+.bcard{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.06);margin-bottom:11px}
+.brow{display:flex;align-items:center;padding:8px 11px;border-bottom:.5px solid #e4e4e7;gap:7px;font-size:11px}
+.brow.clickable{cursor:pointer}.brow.clickable:active{background:#f1f5f9}
+.brow:last-child{border-bottom:none}
+.brow.tot{background:linear-gradient(90deg,#0891b2,#ea580c);color:#fff}
+.bic{width:18px;text-align:center;flex-shrink:0}.bnm{flex:1}
+.bpl{width:54px;text-align:right;color:#71717a;font-size:10px}
+.bac{width:54px;text-align:right;font-weight:600}
+.bdf{width:48px;text-align:right;border-radius:5px;padding:1px 4px;font-size:10px}
+.dok{background:#dcfce7;color:#166534}.dov{background:#fee2e2;color:#991b1b}.dmt{color:#71717a}
+.bar-bg{margin:0 11px 7px;height:4px;background:#e4e4e7;border-radius:4px;overflow:hidden}
+.bar-f{height:100%;border-radius:4px;transition:width .4s}
+.prog{margin-bottom:9px}.ph{display:flex;justify-content:space-between;margin-bottom:3px}
+.dc{background:#fff;border-radius:10px;margin-bottom:9px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.dh{display:flex;align-items:center;gap:7px;padding:9px 11px;cursor:pointer;background:#f9fafb}
+.dbg{font-size:10px;font-weight:600;color:#fff;padding:2px 8px;border-radius:20px;flex-shrink:0}
+.dtit{flex:1;font-size:12px;font-weight:600;color:#18181b;line-height:1.3}
+.dm2{font-size:10px;color:#71717a}
+.di{border-top:.5px solid #e4e4e7}
+.tli{display:grid;grid-template-columns:42px 1fr;border-bottom:.5px solid #f4f4f5;position:relative}
+.tli:last-child{border-bottom:none}
+.tlt{padding:9px 5px 9px 10px;font-size:10px;font-weight:600;color:#71717a;line-height:1.3}
+.tlb{padding:9px 11px 9px 0}
+.tln{font-size:12px;line-height:1.4;margin-bottom:3px;color:#18181b}
+.cat{display:inline-block;font-size:10px;padding:1px 6px;border-radius:7px;margin-bottom:4px}
+.pc{background:#f8fafc;border:.5px solid #e2e8f0;border-radius:7px;padding:5px 8px;margin:3px 0 5px}
+.pn{font-size:11px;font-weight:600;color:#1e293b;margin-bottom:1px}
+.pm{font-size:10px;color:#64748b;margin-bottom:4px}
+.ptag{display:inline-block;font-size:9px;padding:1px 6px;border-radius:5px;margin-right:3px;margin-bottom:3px;font-weight:500}
+.mlink{display:inline-flex;align-items:center;gap:3px;font-size:10px;color:#fff;background:#0891b2;border-radius:5px;padding:3px 8px;text-decoration:none;font-weight:500}
+.amo{display:flex;flex-direction:column;gap:4px;margin-top:5px;background:#f8fafc;padding:6px;border-radius:6px}
+.amo-row{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.pl{font-size:10px;color:#71717a}
+.ai{width:82px;padding:4px 7px;border:1.5px solid #e4e4e7;border-radius:7px;font-size:13px;text-align:right;background:#fef9c3;color:#18181b;font-family:inherit;transition:.15s}
+.ai:focus{outline:none;border-color:#0891b2;background:#fefce8}
+.ai.hv{background:#f0fdf4;border-color:#16a34a;color:#16a34a}
+.ni{width:100%;padding:5px 7px;border:1px dashed #cbd5e1;border-radius:5px;font-size:11px;background:#fff;color:#475569;box-sizing:border-box}
+.ni:focus{outline:none;border-color:#94a3b8;background:#f8fafc}
+.df{font-size:10px;font-weight:600;padding:2px 5px;border-radius:5px;min-width:36px;text-align:center}
+.img-box{margin-top:6px}
+.img-add{display:flex;align-items:center;justify-content:center;gap:5px;border:1.5px dashed #cbd5e1;border-radius:7px;padding:8px;font-size:11px;color:#0891b2;font-weight:500;cursor:pointer;background:#f0f9ff}
+.img-add:active{background:#e0f2fe}
+.img-wrap{position:relative;border-radius:8px;overflow:hidden}
+.item-img{width:100%;max-height:160px;object-fit:cover;display:block;border-radius:8px;cursor:pointer}
+.img-del{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;line-height:1}
+.img-viewer{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:500;display:none;align-items:center;justify-content:center;padding:20px}
+.img-viewer.on{display:flex}
+.img-viewer img{max-width:100%;max-height:100%;border-radius:8px}
+.ib{background:#fff8f0;border:.5px solid #fbbf24;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#92400e;line-height:1.55}
+.wb{background:#fef2f2;border:.5px solid #fca5a5;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#7f1d1d;line-height:1.55}
+.ib strong,.wb strong{font-weight:600;display:block;margin-bottom:3px;font-size:12px}
+.foodbox{background:#fff;border:.5px solid #fed7aa;border-radius:9px;padding:9px 11px;margin-bottom:7px}
+.foodbox-t{font-size:11px;font-weight:700;color:#c2410c;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.fooditem{display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:.5px solid #fef3e2;font-size:11px}
+.fooditem:last-child{border-bottom:none}
+.foodem{font-size:14px;flex-shrink:0;margin-top:1px}
+.foodname{font-weight:600;color:#18181b}
+.fooddesc{font-size:10px;color:#71717a;margin-top:1px;line-height:1.4}
+.tip{background:#fff;border:.5px solid #e4e4e7;border-radius:9px;padding:9px 11px;margin-bottom:7px;display:flex;gap:8px}
+.tip-i{font-size:17px;flex-shrink:0}
+.tip-t{font-size:11px;font-weight:600;color:#18181b;margin-bottom:2px}
+.tip-p{font-size:10px;color:#71717a;line-height:1.5}
+.toast{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);color:#fff;padding:7px 16px;border-radius:18px;font-size:11px;opacity:0;transition:.3s;pointer-events:none;z-index:400;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.2)}
+.toast.on{opacity:1}
+.share-panel{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:300;display:none;align-items:flex-end;justify-content:center}
+.share-panel.on{display:flex}
+.share-box{background:#fff;border-radius:16px 16px 0 0;padding:20px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto}
+.share-box h3{font-size:15px;font-weight:600;margin-bottom:6px}
+.share-box p{font-size:12px;color:#71717a;margin-bottom:14px;line-height:1.5}
+.share-url{width:100%;padding:9px 11px;border:1.5px solid #e4e4e7;border-radius:8px;font-size:11px;font-family:monospace;color:#18181b;background:#f9fafb;margin-bottom:10px;word-break:break-all;white-space:pre-wrap}
+.sbtn-row{display:flex;gap:8px;margin-top:10px}
+.sbtn{flex:1;padding:10px;border-radius:9px;border:.5px solid #e4e4e7;background:#f9fafb;color:#18181b;font-size:12px;font-weight:500;cursor:pointer;transition:.15s;text-align:center}
+.sbtn:active{background:#e4e4e7}
+.sbtn.primary{background:linear-gradient(135deg,#0891b2,#ea580c);color:#fff;border-color:transparent}
+.f-group{margin-bottom:10px}
+.f-group label{display:block;font-size:11px;font-weight:600;color:#4b5563;margin-bottom:3px}
+.f-input{width:100%;padding:8px 10px;border:1px solid #d1d5db;border-radius:6px;font-size:13px}
+.del-btn{position:absolute;right:8px;top:8px;background:none;border:none;color:#ef4444;font-size:14px;cursor:pointer}
+.pie-card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 5px rgba(0,0,0,.06);margin-bottom:11px}
+.pie-wrap{display:flex;gap:12px;align-items:center}
+.pie{width:128px;height:128px;border-radius:50%;flex-shrink:0;box-shadow:inset 0 0 0 14px rgba(255,255,255,.55)}
+.pie-legend{display:flex;flex-direction:column;gap:6px;flex:1}
+.pie-row{display:grid;grid-template-columns:10px 1fr auto;gap:6px;align-items:center;font-size:10px;color:#3f3f46}
+.pie-dot{width:9px;height:9px;border-radius:50%}
+.pie-total{font-size:12px;font-weight:700;color:#18181b;margin-bottom:8px}
+.cat-detail-list{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.cat-day{font-size:10px;font-weight:700;color:#71717a;margin:8px 0 2px}
+.cat-item{border:1px solid #e4e4e7;border-radius:8px;padding:8px;background:#fff}
+.cat-item-top{display:flex;justify-content:space-between;gap:8px;font-size:11px;font-weight:600;color:#18181b;line-height:1.35}
+.cat-item-sub{display:flex;justify-content:space-between;gap:8px;margin-top:5px;font-size:10px;color:#71717a}
+.cat-note{font-size:10px;color:#64748b;margin-top:4px;line-height:1.4}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="ht">
+    <span>🏖️ ทริปครอบครัว บางแสน-สัตหีบ 2027</span>
+    <div class="hdr-btns">
+      <button class="share-btn" onclick="openEditor()">✏️ แก้ไขแผน</button>
+      <button class="share-btn" onclick="openShare()">📤 แชร์</button>
+    </div>
+  </div>
+  <div class="sync-status" id="sync-status">บันทึกในเครื่อง · รถตู้ 10 คน (ลำปาง 9 + ชลบุรี 1)</div>
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-t="db">📊 สรุป</button>
+    <button class="tab" data-t="d1">วัน 1 🚐</button>
+    <button class="tab" data-t="d2">วัน 2 🦐</button>
+    <button class="tab" data-t="d3">วัน 3 🏖</button>
+    <button class="tab" data-t="d4">วัน 4 ⚓</button>
+    <button class="tab" data-t="food">🍜 อาหาร</button>
+    <button class="tab" data-t="tips">🗺 เคล็ดลับ</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- DASHBOARD -->
+<div id="scr-db" class="scr on">
+  <div class="kg">
+    <div class="kc"><div class="kl">งบวางแผนรวม</div><div class="kv" id="kp" style="color:#0891b2">฿0</div><div class="ks">ทั้งทริป 4 วัน 3 คืน</div></div>
+    <div class="kc"><div class="kl">จ่ายจริง (รวม)</div><div class="kv" id="ka" style="color:#16a34a">฿0</div><div class="ks" id="kas">ยังไม่ได้กรอก</div></div>
+    <div class="kc"><div class="kl">ส่วนต่าง</div><div class="kv" id="kd" style="color:#d97706">–</div><div class="ks">จ่ายจริง−แผน</div></div>
+    <div class="kc"><div class="kl">กรอกแล้ว</div><div class="kv" id="kn" style="color:#0891b2">0/0</div><div class="ks">รายการ</div></div>
+  </div>
+  <div class="sec">งบแยกหมวด</div>
+  <div class="bcard" id="btbl"></div>
+  <div class="sec">กราฟค่าใช้จ่ายจริง</div>
+  <div id="expense-pie"></div>
+  <div class="sec">ความคืบหน้าแต่ละวัน</div>
+  <div id="dprog"></div>
+</div>
+
+<!-- DAY 1 -->
+<div id="scr-d1" class="scr">
+  <div class="wb"><strong>🚐 วัน 1 — 22 ม.ค. (ศุกร์) ออกเดินทางจากแจ้ห่ม ลำปาง</strong>รถตู้เช่ามารับ 9 คน ที่ อ.แจ้ห่ม จ.ลำปาง ออกเดินทาง 20:00 น. ขับข้ามคืนมุ่งหน้าปทุมธานี (~610 กม.)<br>🧊 เตรียมกระเป๋า ของว่าง หมอนคอ เผื่อเวลานอนบนรถ</div>
+  <div id="items-d1"></div>
+</div>
+
+<!-- DAY 2 -->
+<div id="scr-d2" class="scr">
+  <div class="ib"><strong>🦐 วัน 2 — 23 ม.ค. (เสาร์) ปทุมธานี → บางแสน ชลบุรี</strong>ถึงปทุมธานีเช้า แวะกินข้าว/พักรถที่บ้านอ้ายเคจนเที่ยง → ออกบ่ายโมงมุ่งหน้าบางแสน<br>🦀 แวะตลาดประมงอ่างศิลา ซื้อของทะเลสดไปทำกินเองที่บ้านพัก</div>
+  <div id="items-d2"></div>
+</div>
+
+<!-- DAY 3 -->
+<div id="scr-d3" class="scr">
+  <div class="ib"><strong>🏖 วัน 3 — 24 ม.ค. (อาทิตย์) เล่นน้ำบางแสน → ย้ายไปสัตหีบ</strong>เช้าเล่นน้ำหาดบางแสน เที่ยง Bangsaen Aquarium → บ่ายย้ายไปเข้าที่พักสัตหีบ<br>🦑 เย็นนี้: ซื้ออาหารทะเล + นั่งตกหมึกริมทะเลสัตหีบ</div>
+  <div id="items-d3"></div>
+</div>
+
+<!-- DAY 4 -->
+<div id="scr-d4" class="scr">
+  <div class="wb"><strong>⚓ วัน 4 — 25 ม.ค. (จันทร์) หาดน้ำใส → เรือหลวงจักรีนฤเบศร → กลับลำปาง</strong>เช้าเที่ยวหาดน้ำใส + เรือหลวงจักรีนฤเบศร (เข้าฟรี 09:00-17:00 น. เตรียมบัตร ปชช.)<br>⏰ เที่ยง ส่งเบนที่ชลบุรี 13:00 ออกเดินทางกลับลำปาง ถึงบ้านแจ้ห่มราว 23:00 น.</div>
+  <div id="items-d4"></div>
+</div>
+
+<!-- FOOD TAB -->
+<div id="scr-food" class="scr">
+  <div class="sec" style="margin-top:4px">🦀 อาหารทะเล บางแสน-อ่างศิลา</div>
+
+  <div class="foodbox">
+    <div class="foodbox-t">🦐 ตลาดประมงอ่างศิลา — ซื้อสดทำเองคุ้มสุด</div>
+    <div style="font-size:10px;color:#71717a;margin-bottom:6px">ต.อ่างศิลา ริมทะเล บางแสน · เปิดเช้าถึงเย็น · <a href="http://maps.google.com/?q=%E0%B8%95%E0%B8%A5%E0%B8%B2%E0%B8%94%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A1%E0%B8%87%E0%B8%AD%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%A8%E0%B8%B4%E0%B8%A5%E0%B8%B2" target="_blank" class="mlink">📍 Maps</a></div>
+    <div class="fooditem"><div class="foodem">🦐</div><div><div class="foodname">กุ้งแม่น้ำ/กุ้งทะเลสด</div><div class="fooddesc">เลือกเป็นๆ ราคาต่อรองได้ ให้แม่ค้าช่วยแนะนำขนาดพอดีมื้อ</div></div></div>
+    <div class="fooditem"><div class="foodem">🦀</div><div><div class="foodname">ปูม้า/หอยแมลงภู่</div><div class="fooddesc">เอาไปนึ่งหรือผัดฉ่าที่บ้านพัก สดกว่าไปกินร้าน ราคาถูกกว่าเยอะ</div></div></div>
+    <div class="fooditem"><div class="foodem">🐟</div><div><div class="foodname">ปลาหมึกสด</div><div class="fooddesc">เหมาะย่างหรือผัดกระเทียม ซื้อเผื่อทำมื้อเย็นวันแรก</div></div></div>
+    <div class="fooditem"><div class="foodem">🧂</div><div><div class="foodname">น้ำจิ้มซีฟู้ด</div><div class="fooddesc">มีขายพร้อมในตลาด ซื้อติดไปด้วยไม่ต้องทำเอง</div></div></div>
+  </div>
+
+  <div class="foodbox">
+    <div class="foodbox-t">🏖 ร้านริมหาดบางแสน</div>
+    <div style="font-size:10px;color:#71717a;margin-bottom:6px">ถนนเลียบหาดบางแสน · <a href="http://maps.google.com/?q=%E0%B8%AB%E0%B8%B2%E0%B8%94%E0%B8%9A%E0%B8%B2%E0%B8%87%E0%B9%81%E0%B8%AA%E0%B8%99" target="_blank" class="mlink">📍 Maps</a></div>
+    <div class="fooditem"><div class="foodem">🍢</div><div><div class="foodname">ไก่ย่าง/หมึกย่างเดินหาด</div><div class="fooddesc">ร้านเข็นขายตลอดแนวหาด กินเล่นระหว่างนั่งชายหาด</div></div></div>
+    <div class="fooditem"><div class="foodem">🍹</div><div><div class="foodname">เครื่องดื่มมะพร้าว/น้ำแข็งใส</div><div class="fooddesc">คลายร้อนหลังเล่นน้ำทะเล มีขายทั่วชายหาด</div></div></div>
+  </div>
+
+  <div class="sec">⚓ อาหารทะเล สัตหีบ</div>
+
+  <div class="foodbox">
+    <div class="foodbox-t">🦑 ซีฟู้ดริมทะเลสัตหีบ + จุดตกหมึก</div>
+    <div style="font-size:10px;color:#71717a;margin-bottom:6px">แนวท่าเทียบเรือ/ร้านริมทะเลสัตหีบ · <a href="http://maps.google.com/?q=%E0%B8%AA%E0%B8%B1%E0%B8%95%E0%B8%AB%E0%B8%B5%E0%B8%9A%20%E0%B8%8A%E0%B8%A5%E0%B8%9A%E0%B8%B8%E0%B8%A3%E0%B8%B5" target="_blank" class="mlink">📍 Maps</a></div>
+    <div class="fooditem"><div class="foodem">🦑</div><div><div class="foodname">ตกหมึกกลางคืน</div><div class="fooddesc">เช่าคันเบ็ด/นั่งท่าน้ำได้ตามจุดที่มีบริการ เพลินดีสำหรับครอบครัว</div></div></div>
+    <div class="fooditem"><div class="foodem">🔥</div><div><div class="foodname">หมึกย่าง/หมึกชุบแป้งทอด</div><div class="fooddesc">สดจากเรือประมงพื้นบ้าน ราคาย่อมเยากว่าฝั่งพัทยา</div></div></div>
+    <div class="fooditem"><div class="foodem">🍚</div><div><div class="foodname">ข้าวผัดปู/ต้มยำทะเล</div><div class="fooddesc">เมนูจานหลักมื้อเย็น อิ่มท้องทั้งครอบครัว</div></div></div>
+  </div>
+</div>
+
+<!-- TIPS TAB -->
+<div id="scr-tips" class="scr">
+  <div class="sec" style="margin-top:4px">การเดินทาง</div>
+  <div class="tip"><div class="tip-i">🚐</div><div><div class="tip-t">แจ้ห่ม ลำปาง → ปทุมธานี</div><div class="tip-p">ระยะทางประมาณ 600-620 กม. ขับข้ามคืนออก 20:00 ถึงเช้า ~06:00-07:00 น. · แวะพักรถเป็นระยะที่ปั๊มน้ำมันใหญ่ริมทาง</div></div></div>
+  <div class="tip"><div class="tip-i">⛽</div><div><div class="tip-t">ค่าน้ำมันทั้งทริป (คิด 5 บาท/กม.)</div><div class="tip-p">ระยะทางรวมประมาณ 1,500 กม. × 5 บาท/กม. = ฿7,500 (บวกค่าทางด่วนแยกต่างหาก) ปรับตาม "จ่ายจริง" ได้เมื่อเติมน้ำมันจริง</div></div></div>
+  <div class="tip"><div class="tip-i">🚗</div><div><div class="tip-t">ปทุมธานี → บางแสน → สัตหีบ</div><div class="tip-p">ปทุมธานี→บางแสน ~150 กม. (~2 ชม.) · บางแสน→สัตหีบ ~45 กม. (~1 ชม.) เส้นทางผ่านมอเตอร์เวย์/บายพาสชลบุรีได้</div></div></div>
+  <div class="sec">ที่เที่ยวหลัก</div>
+  <div class="tip"><div class="tip-i">🏖</div><div><div class="tip-t">หาดบางแสน</div><div class="tip-p">หาดทรายยาว มีเก้าอี้ผ้าใบ+ร่มให้เช่า เหมาะเล่นน้ำเช้าก่อนแดดจัด | ระวังของมีค่าเวลานั่งหาด</div></div></div>
+  <div class="tip"><div class="tip-i">🐠</div><div><div class="tip-t">Bangsaen Aquarium (สถาบันวิทยาศาสตร์ทางทะเล ม.บูรพา)</div><div class="tip-p">อยู่ใกล้หาดบางแสน มีค่าเข้าชม (เช็กราคาล่าสุดหน้างาน/เว็บก่อนไป) เหมาะพาเด็กเข้าชม</div></div></div>
+  <div class="tip"><div class="tip-i">🏊</div><div><div class="tip-t">หาดน้ำใส สัตหีบ</div><div class="tip-p">น้ำใสกว่าบางแสน เหมาะเล่นน้ำ-ถ่ายรูปช่วงเช้า มีร้านอาหาร/ร่มเช่าริมหาด</div></div></div>
+  <div class="tip"><div class="tip-i">⚓</div><div><div class="tip-t">เรือหลวงจักรีนฤเบศร</div><div class="tip-p">เข้าชมฟรี เปิดทุกวัน 09:00-17:00 น. (งดช่วงเช้า 09:00-12:00 เฉพาะวันพุธ-พฤหัส) เตรียมบัตรประชาชนทุกคน แต่งกายสุภาพ ห้ามนำอาหารเข้า</div></div></div>
+  <div class="sec">อื่นๆ</div>
+  <div class="tip"><div class="tip-i">☀️</div><div><div class="tip-t">มกราคม = หน้าแล้ง อากาศเย็นสบาย</div><div class="tip-p">ทะเลตะวันออกช่วงนี้คลื่นลมสงบ แดดแรงตอนสาย พกครีมกันแดด + หมวก + เสื้อกันหนาวบางๆ ไว้ตอนเช้า/กลางคืน</div></div></div>
+  <div class="tip"><div class="tip-i">🧊</div><div><div class="tip-t">ของทะเลจากอ่างศิลา</div><div class="tip-p">ถ้าซื้อเผื่อฝากคนที่บ้าน ให้พกกระติกน้ำแข็งไปจากรถ เก็บความสดระหว่างเดินทาง</div></div></div>
+  <div class="tip"><div class="tip-i">💰</div><div><div class="tip-t">ตัวเลขงบในแผนนี้เป็นค่าประมาณ</div><div class="tip-p">ค่ารถตู้/น้ำมัน/มื้ออาหารบางมื้อเป็นตัวเลขประมาณการ ปรับแก้ได้ทุกช่องในแท็บ "แก้ไขแผน" และกรอก "จ่ายจริง" หลังใช้จ่ายจริง</div></div></div>
+  <div class="tip"><div class="tip-i">📷</div><div><div class="tip-t">รูปภาพที่ Import ในแต่ละรายการ</div><div class="tip-p">รูปถูกเก็บไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น (ไม่รวมอยู่ในลิงก์แชร์) ถ้าเปลี่ยนเครื่อง/ล้างข้อมูลเบราว์เซอร์ รูปจะหายไป</div></div></div>
+</div>
+
+</div><!-- /wrap -->
+
+<!-- MODALS -->
+<div class="share-panel" id="share-panel" onclick="closeModal(event,'share-panel')">
+  <div class="share-box">
+    <h3>📤 แชร์แผนและค่าใช้จ่าย</h3>
+    <p>ลิงก์นี้จะฝังข้อมูลทริปและยอดเงินจ่ายจริงทั้งหมด</p>
+    <div class="share-url" id="share-url">กำลังสร้างลิงก์...</div>
+    <div class="sbtn-row">
+      <button class="sbtn" onclick="document.getElementById('share-panel').classList.remove('on')">ปิด</button>
+      <button class="sbtn primary" onclick="copyShareUrl()">📋 คัดลอกลิงก์</button>
+    </div>
+  </div>
+</div>
+
+<div class="share-panel" id="category-panel" onclick="closeModal(event,'category-panel')">
+  <div class="share-box">
+    <h3 id="category-title">รายละเอียดหมวด</h3>
+    <p id="category-summary"></p>
+    <div id="category-items" class="cat-detail-list"></div>
+    <div class="sbtn-row">
+      <button class="sbtn primary" onclick="document.getElementById('category-panel').classList.remove('on')">ปิด</button>
+    </div>
+  </div>
+</div>
+
+<div class="share-panel" id="editor-panel" onclick="closeModal(event,'editor-panel')">
+  <div class="share-box">
+    <h3>✏️ จัดการแผนการเดินทาง</h3>
+    <div class="f-group">
+      <label>เลือกวัน</label>
+      <select class="f-input" id="f-day" onchange="renderEditorItems()">
+        <option value="d1">วัน 1 — 22 ม.ค.</option>
+        <option value="d2">วัน 2 — 23 ม.ค.</option>
+        <option value="d3">วัน 3 — 24 ม.ค.</option>
+        <option value="d4">วัน 4 — 25 ม.ค.</option>
+      </select>
+    </div>
+    <div style="border:1px solid #e4e4e7;border-radius:8px;padding:10px;max-height:40vh;overflow-y:auto;background:#f8fafc" id="editor-items-list"></div>
+    <button class="sbtn primary" style="width:100%;margin-top:10px" onclick="addNewItemRow()">➕ เพิ่มรายการใหม่</button>
+    <div class="sbtn-row">
+      <button class="sbtn" onclick="document.getElementById('editor-panel').classList.remove('on')">ยกเลิก</button>
+      <button class="sbtn primary" onclick="saveEditorChanges()">💾 บันทึก</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="img-viewer" id="img-viewer" onclick="closeImgViewer()"><img id="img-viewer-img" src=""></div>
+
+<script>
+const PL = {
+  angsila:{n:'ตลาดประมงอ่างศิลา',r:'ตลาดของทะเลสด',h:'เปิดเช้า-เย็น',q:'ตลาดประมงอ่างศิลา ชลบุรี',tags:['🦐 ของทะเลสด','💰 คุ้มค่า']},
+  bangsaenAccom:{n:'ที่พักบางแสน',r:'ที่พักครอบครัว',h:'เช็คอินบ่าย',q:'ที่พักหาดบางแสน ชลบุรี',tags:['🏠 พักครอบครัว']},
+  bangsaenBeach:{n:'หาดบางแสน',r:'หาดทรายยาว',h:'ตลอดวัน',q:'หาดบางแสน ชลบุรี',tags:['🏖 เล่นน้ำ','🆓 เข้าฟรี']},
+  aquarium:{n:'Bangsaen Aquarium (สถาบันวิทยาศาสตร์ทางทะเล ม.บูรพา)',r:'พิพิธภัณฑ์สัตว์น้ำ',h:'เช็คเวลาเปิด-ปิดหน้างาน',q:'สถาบันวิทยาศาสตร์ทางทะเล มหาวิทยาลัยบูรพา บางแสน',tags:['🐠 พาเด็กได้']},
+  sattahipAccom:{n:'ที่พักสัตหีบ',r:'ที่พักครอบครัว',h:'เช็คอินบ่าย',q:'ที่พักสัตหีบ ชลบุรี',tags:['🏠 พักครอบครัว']},
+  sattahipPier:{n:'ริมทะเลสัตหีบ (จุดตกหมึก)',r:'ร้านซีฟู้ดริมทะเล',h:'เย็น-ค่ำ',q:'ร้านอาหารริมทะเล สัตหีบ ตกหมึก',tags:['🦑 ตกหมึก','🍤 ซีฟู้ด']},
+  hatnamsai:{n:'หาดน้ำใส สัตหีบ',r:'หาดน้ำใส',h:'เช้า-บ่าย',q:'หาดน้ำใส สัตหีบ ชลบุรี',tags:['🏊 น้ำใส','📸 ถ่ายรูป']},
+  chakri:{n:'เรือหลวงจักรีนฤเบศร',r:'เรือบรรทุกเครื่องบินลำเดียวของไทย',h:'09:00-17:00 (เข้าฟรี)',q:'เรือหลวงจักรีนฤเบศร ท่าเรือจุกเสม็ด สัตหีบ',tags:['🆓 เข้าฟรี','⚓ ประวัติศาสตร์','🪪 พกบัตร ปชช.']},
+};
+
+const CM={V:{l:'🚐รถตู้',bg:'#fef3c7',cl:'#92400e'},TR:{l:'⛽เดินทาง',bg:'#dbeafe',cl:'#1e3a8a'},H:{l:'🏨ที่พัก',bg:'#dcfce7',cl:'#14532d'},F:{l:'🍜อาหาร',bg:'#ffedd5',cl:'#7c2d12'},S:{l:'🛍ซื้อของ',bg:'#fce7f3',cl:'#831843'},A:{l:'🎣กิจกรรม',bg:'#ede9fe',cl:'#4c1d95'},M:{l:'🧾อื่นๆ',bg:'#f4f4f5',cl:'#52525b'}};
+const CG=[{k:'V',l:'🚐 ค่ารถตู้',c:'#d97706'},{k:'TR',l:'⛽ น้ำมัน/ทางด่วน',c:'#2563eb'},{k:'H',l:'🏨 ที่พัก',c:'#16a34a'},{k:'F',l:'🍜 อาหาร',c:'#dc2626'},{k:'S',l:'🛍 ซื้อของ',c:'#db2777'},{k:'A',l:'🎣 กิจกรรม',c:'#7c3aed'},{k:'M',l:'🧾 อื่นๆ',c:'#71717a'}];
+
+let DEFAULT_DAYS=[
+  {id:'d1',lbl:'วัน 1',date:'22 ม.ค.',title:'🚐 ออกเดินทางจากแจ้ห่ม ลำปาง',col:'#0891b2',items:[
+    {id:'i1_1',t:'18:30',n:'🧳 เตรียมกระเป๋า+ของใช้ นัดรวมพลที่บ้าน อ.แจ้ห่ม',c:'M',p:0,pl:null},
+    {id:'i1_2',t:'20:00',n:'🚐 ค่าเช่ารถตู้ตลอดทริป (4 วัน × 1,800 บาท/วัน ไม่รวมน้ำมัน)',c:'V',p:7200,pl:null},
+    {id:'i1_3',t:'20:00',n:'⛽ ค่าน้ำมันรถตู้ตลอดทริป (~1,500 กม. × 5 บาท/กม.)',c:'TR',p:7500,pl:null},
+    {id:'i1_4',t:'20:00',n:'🛣 ค่าทางด่วน/ค่าผ่านทางตลอดทริป (ประมาณการ)',c:'TR',p:300,pl:null},
+    {id:'i1_5',t:'20:00',n:'🚐 รถตู้ออกเดินทางจาก อ.แจ้ห่ม จ.ลำปาง (9 คน) มุ่งหน้าปทุมธานี',c:'M',p:0,pl:null},
+    {id:'i1_6',t:'21:00',n:'🌙 ขับข้ามคืน แวะพักรถ-เข้าห้องน้ำเป็นระยะที่ปั๊มริมทาง',c:'M',p:0,pl:null},
+  ]},
+  {id:'d2',lbl:'วัน 2',date:'23 ม.ค.',title:'🦐 ปทุมธานี → บางแสน ชลบุรี',col:'#16a34a',items:[
+    {id:'i2_1',t:'06:00',n:'🛬 ถึงปทุมธานี แวะพักรถหลังขับข้ามคืน',c:'M',p:0,pl:null},
+    {id:'i2_2',t:'07:00',n:'🍽 อาหารเช้าที่ "บ้านอ้ายเค" ปทุมธานี (10 คน)',c:'F',p:2000,pl:null},
+    {id:'i2_3',t:'07:30',n:'😴 พักผ่อน/พักรถที่บ้านอ้ายเค จนถึงเที่ยง',c:'M',p:0,pl:null},
+    {id:'i2_4',t:'13:00',n:'🚐 ออกเดินทางจากปทุมธานี มุ่งหน้าบางแสน ชลบุรี',c:'M',p:0,pl:null},
+    {id:'i2_5',t:'15:00',n:'🦐🦀 แวะตลาดประมงอ่างศิลา ซื้อกุ้ง หอย ปู ปลา ไปทำอาหารเย็น',c:'S',p:3000,pl:'angsila'},
+    {id:'i2_6',t:'16:30',n:'🏠 เข้าที่พักบางแสน เช็คอิน',c:'H',p:6000,pl:'bangsaenAccom'},
+    {id:'i2_7',t:'18:30',n:'🍤 ทำอาหารเย็นกินกันที่บ้านพัก พักผ่อน',c:'M',p:0,pl:null},
+  ]},
+  {id:'d3',lbl:'วัน 3',date:'24 ม.ค.',title:'🏖 เล่นน้ำบางแสน → ย้ายไปสัตหีบ',col:'#0284c7',items:[
+    {id:'i3_1',t:'08:00',n:'🏖 เล่นน้ำ/นั่งเล่นชายหาดบางแสน',c:'A',p:0,pl:'bangsaenBeach'},
+    {id:'i3_2',t:'10:00',n:'🚿 กลับที่พัก อาบน้ำเก็บของ',c:'M',p:0,pl:null},
+    {id:'i3_3',t:'11:00',n:'✅ เช็คเอาต์ที่พักบางแสน',c:'H',p:0,pl:'bangsaenAccom'},
+    {id:'i3_4',t:'11:30',n:'🍽 กินข้าวเที่ยง แถวบางแสน (10 คน)',c:'F',p:2000,pl:null},
+    {id:'i3_4b',t:'12:30',n:'🐠 เที่ยว Bangsaen Aquarium (ค่าเข้าชม ~80 บาท/คน × 10 คน)',c:'A',p:1000,pl:'aquarium'},
+    {id:'i3_5',t:'14:00',n:'🚐 ออกเดินทางไปสัตหีบ',c:'M',p:0,pl:null},
+    {id:'i3_6',t:'15:00',n:'🏠 เข้าที่พักสัตหีบ เช็คอิน',c:'H',p:8000,pl:'sattahipAccom'},
+    {id:'i3_7',t:'18:00',n:'🦑 ซื้ออาหารเย็น + นั่งตกหมึกริมทะเลสัตหีบ',c:'F',p:3000,pl:'sattahipPier'},
+  ]},
+  {id:'d4',lbl:'วัน 4 ⚠️',date:'25 ม.ค.',title:'⚓ หาดน้ำใส → เรือหลวงจักรีนฤเบศร → กลับลำปาง',col:'#dc2626',items:[
+    {id:'i4_1',t:'08:00',n:'🏊 หาดน้ำใส เล่นน้ำ ถ่ายรูป',c:'A',p:200,pl:'hatnamsai'},
+    {id:'i4_2',t:'10:00',n:'🚐 ออกจากหาดน้ำใส',c:'M',p:0,pl:null},
+    {id:'i4_3',t:'10:30',n:'⚓ แวะชมเรือหลวงจักรีนฤเบศร (เข้าฟรี · เตรียมบัตรประชาชนทุกคน)',c:'A',p:0,pl:'chakri'},
+    {id:'i4_4',t:'12:00',n:'🍽 กินข้าวเที่ยง + ส่งเบนลงที่ชลบุรี (10 คน)',c:'F',p:2000,pl:null},
+    {id:'i4_5',t:'13:00',n:'🚐 ออกเดินทางกลับลำปาง (9 คน)',c:'M',p:0,pl:null},
+    {id:'i4_6',t:'22:00',n:'🛬 ถึงลำปาง ส่งฝ้าย',c:'M',p:0,pl:null},
+    {id:'i4_7',t:'23:00',n:'🏠 ถึงบ้านแจ้ห่มโดยสวัสดิภาพ',c:'M',p:0,pl:null},
+  ]},
+];
+
+const LOCAL_PLAN_KEY='famtrip27_plan_v1';
+const LOCAL_ACTUAL_KEY='famtrip27_actuals_v1';
+const LOCAL_IMG_KEY='famtrip27_images_v1';
+
+function readStoredData(k,fb){try{const r=localStorage.getItem(k);return r?JSON.parse(r):fb;}catch(e){return fb;}}
+let DAYS=readStoredData(LOCAL_PLAN_KEY,DEFAULT_DAYS);
+let A=readStoredData(LOCAL_ACTUAL_KEY,{});
+let IMG=readStoredData(LOCAL_IMG_KEY,{});
+
+DAYS.forEach(day=>{
+  const def=DEFAULT_DAYS.find(d=>d.id===day.id);
+  if(!def)return;
+  def.items.forEach(di=>{if(!day.items.some(i=>i.id===di.id))day.items.push(JSON.parse(JSON.stringify(di)));});
+});
+
+try{const h=location.hash.slice(1);if(h&&h.startsWith('data=')){const d=JSON.parse(fromB64(decodeURIComponent(h.slice(5))));if(d.plan){DAYS=d.plan;localStorage.setItem(LOCAL_PLAN_KEY,JSON.stringify(DAYS));}if(d.act){A=d.act;localStorage.setItem(LOCAL_ACTUAL_KEY,JSON.stringify(A));}}}catch(e){}
+
+function toB64(t){const b=new TextEncoder().encode(t);let s='';b.forEach(x=>s+=String.fromCharCode(x));return btoa(s);}
+function fromB64(t){const b=atob(t);const arr=Uint8Array.from(b,c=>c.charCodeAt(0));return new TextDecoder().decode(arr);}
+function tv(t){const m=String(t||'').match(/(\d{1,2})[:.:](\d{2})/);return m?Number(m[1])*60+Number(m[2]):9999;}
+function sortT(items){return items.map((x,i)=>({x,i,t:tv(x.t)})).sort((a,b)=>(a.t-b.t)||(a.i-b.i)).map(r=>r.x);}
+function norm(plan){plan.forEach(d=>{if(Array.isArray(d.items))d.items=sortT(d.items);});return plan;}
+function save(){norm(DAYS);localStorage.setItem(LOCAL_PLAN_KEY,JSON.stringify(DAYS));localStorage.setItem(LOCAL_ACTUAL_KEY,JSON.stringify(A));}
+function saveImgs(){try{localStorage.setItem(LOCAL_IMG_KEY,JSON.stringify(IMG));return true;}catch(e){return false;}}
+function shareUrl(){const p=toB64(JSON.stringify({plan:DAYS,act:A}));return location.href.split('#')[0].split('?')[0]+'#data='+encodeURIComponent(p);}
+function openShare(){document.getElementById('share-url').textContent=shareUrl();document.getElementById('share-panel').classList.add('on');}
+function closeModal(e,id){if(!e||e.target===document.getElementById(id))document.getElementById(id).classList.remove('on');}
+function copyShareUrl(){navigator.clipboard.writeText(document.getElementById('share-url').textContent).then(()=>{showToast('คัดลอกลิงก์เรียบร้อย! 🎉','#0891b2');document.getElementById('share-panel').classList.remove('on');});}
+function showToast(msg,bg='#16a34a'){const t=document.getElementById('toast');t.textContent=msg;t.style.background=bg;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2000);}
+function ml(q){return`<a href="http://maps.google.com/?q=${encodeURIComponent(q)}" target="_blank" class="mlink">📍 Maps</a>`;}
+function pc(k){
+  const p=PL[k];if(!p)return '';
+  const tags=(p.tags||[]).map(tg=>`<span class="ptag" style="background:#f0f9ff;color:#0369a1;border:0.5px solid #bae6fd">${tg}</span>`).join('');
+  return `<div class="pc"><div class="pn">${p.n}</div><div class="pm">${p.r} · ${p.h}</div>${tags?`<div style="margin:3px 0">${tags}</div>`:''}${ml(p.q)}</div>`;
+}
+
+function renderDayScreen(id){
+  const day=DAYS.find(d=>d.id===id);if(!day)return;
+  const el=document.getElementById('items-'+id);if(!el)return;
+  day.items=sortT(day.items);
+  let h=`<div class="dc" style="border-left:3px solid ${day.col}">
+    <div class="dh" onclick="tog('${day.id}')">
+      <div class="dbg" style="background:${day.col}">${day.lbl}</div>
+      <div><div class="dtit">${day.title}</div>
+      <div class="dm2">${day.date} · ฿${day.items.reduce((s,i)=>s+i.p,0).toLocaleString()} แผน</div></div>
+      <span id="ch-${day.id}" style="font-size:12px;color:#a1a1aa">▾</span>
+    </div><div class="di" id="di-${day.id}" data-open="1">`;
+  if(!day.items.length)h+=`<div style="padding:15px;font-size:11px;color:#a1a1aa;text-align:center">ไม่มีรายการ กด "แก้ไขแผน"</div>`;
+  for(const it of day.items){
+    const cat=CM[it.c]||{l:'',bg:'#f4f4f5',cl:'#555'};
+    const av=A[it.id],hv=av!==undefined&&av!=='';
+    const noteVal=A[it.id+'_n']||'';
+    const diff=hv?Number(av)-it.p:null;
+    const dfh=diff!==null?`<span class="df ${diff<=0?'dok':'dov'}">${diff>0?'+':''}${diff.toLocaleString()}</span>`:'';
+    h+=`<div class="tli"><div class="tlt">${it.t}</div><div class="tlb">
+      <div class="tln">${it.n.replace(/\\n/g,'<br>')}</div>
+      ${it.c?`<span class="cat" style="background:${cat.bg};color:${cat.cl}">${cat.l}</span>`:''}
+      ${it.pl?pc(it.pl):''}
+      <div class="amo"><div class="amo-row">
+        <span class="pl">แผน ฿${it.p.toLocaleString()}</span>
+        <div style="display:flex;align-items:center;gap:4px">
+          <input type="number" class="ai${hv?' hv':''}" placeholder="จ่ายจริง" value="${hv?av:''}" inputmode="numeric" onchange="updA('${it.id}',this.value)" oninput="updA('${it.id}',this.value)" onfocus="this.select()">
+          ${dfh}
+        </div>
+      </div>
+      <input type="text" class="ni" placeholder="✍️ บันทึกเพิ่มเติม..." value="${noteVal}" onchange="updN('${it.id}',this.value)" oninput="updN('${it.id}',this.value)">
+      <div class="img-box" id="imgbox-${it.id}">${imgBoxHTML(it.id)}</div>
+      </div>
+    </div></div>`;
+  }
+  h+='</div></div>';el.innerHTML=h;
+}
+
+function tog(id){const di=document.getElementById('di-'+id),ch=document.getElementById('ch-'+id);if(!di)return;const open=di.dataset.open!=='0';di.dataset.open=open?'0':'1';di.style.display=open?'none':'block';if(ch)ch.textContent=open?'▸':'▾';}
+const _timers={};function debounce(key,fn,delay){clearTimeout(_timers[key]);_timers[key]=setTimeout(fn,delay||600);}
+function updA(id,val){const v=val.trim();if(v==='')delete A[id];else A[id]=Number(v);debounce('a_'+id,function(){save();dash();refreshDays();showToast('บันทึกยอดเงิน ✓','#16a34a');},400);}
+function updN(id,val){const v=val.trim();if(v==='')delete A[id+'_n'];else A[id+'_n']=v;debounce('n_'+id,function(){save();showToast('บันทึกโน้ต ✓','#0284c7');},800);}
+function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function refreshDays(){DAYS.forEach(d=>{const b=document.getElementById('items-'+d.id);if(b&&b.innerHTML!=='')renderDayScreen(d.id);});}
+
+function imgBoxHTML(id){
+  if(IMG[id]){
+    return `<div class="img-wrap"><img class="item-img" src="${IMG[id]}" onclick="viewImg('${id}')"><button class="img-del" onclick="delImg('${id}')">✕</button></div>`;
+  }
+  return `<label class="img-add">📷 Import รูป<input type="file" accept="image/*" style="display:none" onchange="handleImgUpload('${id}',this)"></label>`;
+}
+
+function handleImgUpload(id,inputEl){
+  const file=inputEl.files&&inputEl.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const img=new Image();
+    img.onload=function(){
+      const maxW=900;const scale=Math.min(1,maxW/img.width);
+      const canvas=document.createElement('canvas');
+      canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
+      const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);
+      const dataUrl=canvas.toDataURL('image/jpeg',0.72);
+      IMG[id]=dataUrl;
+      const ok=saveImgs();
+      const box=document.getElementById('imgbox-'+id);if(box)box.innerHTML=imgBoxHTML(id);
+      showToast(ok?'เพิ่มรูปเรียบร้อย ✓':'รูปไม่ถูกบันทึก (พื้นที่เก็บข้อมูลเต็ม)',ok?'#16a34a':'#dc2626');
+    };
+    img.src=e.target.result;
+  };
+  reader.readAsDataURL(file);
+  inputEl.value='';
+}
+function delImg(id){delete IMG[id];saveImgs();const box=document.getElementById('imgbox-'+id);if(box)box.innerHTML=imgBoxHTML(id);showToast('ลบรูปแล้ว','#71717a');}
+function viewImg(id){if(!IMG[id])return;document.getElementById('img-viewer-img').src=IMG[id];document.getElementById('img-viewer').classList.add('on');}
+function closeImgViewer(){document.getElementById('img-viewer').classList.remove('on');document.getElementById('img-viewer-img').src='';}
+
+function openCatDetail(k){
+  const cat=CG.find(r=>r.k===k);if(!cat)return;
+  let p=0,a=0,n=0,h='';
+  DAYS.forEach(day=>{
+    const rows=day.items.filter(i=>i.c===k);if(!rows.length)return;
+    let dh='',dr=false;
+    rows.forEach(it=>{
+      const hA=A[it.id]!==undefined,av=hA?Number(A[it.id]):0;
+      if(!it.p&&!hA)return;
+      p+=it.p||0;a+=av;if(hA)n++;dr=true;
+      const d=hA?av-(it.p||0):null,nt=A[it.id+'_n'];
+      dh+=`<div class="cat-item"><div class="cat-item-top"><span>${esc(it.n)}</span><strong>${hA?'฿'+av.toLocaleString():'รอกรอก'}</strong></div>
+        <div class="cat-item-sub"><span>${esc(it.t)} · แผน ฿${(it.p||0).toLocaleString()}</span>
+          <span class="${d!==null?(d<=0?'dok':'dov'):'dmt'}" style="padding:1px 5px;border-radius:5px">${d!==null?(d>0?'+':'')+d.toLocaleString():'-'}</span></div>
+        ${nt?`<div class="cat-note">${esc(nt)}</div>`:''}
+      </div>`;
+    });
+    if(dr)h+=`<div class="cat-day">${esc(day.lbl)} · ${esc(day.date)}</div>${dh}`;
+  });
+  const d=a-p;
+  document.getElementById('category-title').textContent=cat.l;
+  document.getElementById('category-summary').textContent=`แผน ฿${p.toLocaleString()} · จ่ายจริง ฿${a.toLocaleString()} · ${d>=0?'เกิน':'ประหยัด'} ฿${Math.abs(d).toLocaleString()} · ${n} รายการ`;
+  document.getElementById('category-items').innerHTML=h||'<div style="font-size:11px;color:#71717a;text-align:center;padding:12px">ไม่มีรายการ</div>';
+  document.getElementById('category-panel').classList.add('on');
+}
+
+function renderPie(ca,tot,n){
+  const box=document.getElementById('expense-pie');if(!box)return;
+  if(!tot){box.innerHTML='<div class="pie-card" style="font-size:11px;color:#71717a;text-align:center">ยังไม่มีข้อมูลรายจ่ายจริง</div>';return;}
+  let s=0;
+  const rows=CG.map(cg=>({cg,v:ca[cg.k]||0})).filter(r=>r.v>0);
+  const grad=rows.map(r=>{const e=s+(r.v/tot*360);const pt=`${r.cg.c} ${s.toFixed(2)}deg ${e.toFixed(2)}deg`;s=e;return pt;}).join(',');
+  const leg=rows.map(r=>{const p=Math.round(r.v/tot*100);return`<div class="pie-row"><span class="pie-dot" style="background:${r.cg.c}"></span><span>${r.cg.l}</span><strong>฿${r.v.toLocaleString()} · ${p}%</strong></div>`;}).join('');
+  box.innerHTML=`<div class="pie-card"><div class="pie-total">รวมจ่ายจริง ฿${tot.toLocaleString()} <span style="font-weight:500;color:#71717a">จาก ${n} รายการ</span></div><div class="pie-wrap"><div class="pie" style="background:conic-gradient(${grad})"></div><div class="pie-legend">${leg}</div></div></div>`;
+}
+
+function dash(){
+  let tp=0,ta=0,fi=0,tot=0;const cp={},ca={};
+  DAYS.forEach(d=>d.items.forEach(it=>{tot++;tp+=it.p;cp[it.c]=(cp[it.c]||0)+it.p;if(A[it.id]!==undefined){fi++;ta+=Number(A[it.id]);ca[it.c]=(ca[it.c]||0)+Number(A[it.id]);}}));
+  const diff=ta-tp;
+  document.getElementById('kp').textContent='฿'+tp.toLocaleString();
+  document.getElementById('ka').textContent='฿'+ta.toLocaleString();
+  document.getElementById('kas').textContent=fi>0?`กรอกแล้ว ${fi} รายการ`:'ยังไม่ได้กรอก';
+  document.getElementById('kn').textContent=fi+'/'+tot;
+  const de=document.getElementById('kd');de.style.color=fi===0?'#d97706':diff<=0?'#16a34a':'#dc2626';de.textContent=fi===0?'–':`${diff>0?'+':''}฿${diff.toLocaleString()}`;
+  let bh='';
+  CG.forEach(cg=>{const p=cp[cg.k]||0,a=ca[cg.k],hA=a!==undefined,d=hA?a-p:null,pct=tp?Math.min(100,Math.round(p/tp*100)):0;
+    bh+=`<div class="brow clickable" onclick="openCatDetail('${cg.k}')"><div class="bic">${cg.l.split(' ')[0]}</div>
+      <div class="bnm">${cg.l.split(' ').slice(1).join(' ')}</div>
+      <div class="bpl">฿${p.toLocaleString()}</div>
+      <div class="bac" style="color:${hA?(d<=0?'#16a34a':'#dc2626'):'#71717a'}">${hA?'฿'+a.toLocaleString():'–'}</div>
+      <div class="bdf ${hA?(d<=0?'dok':'dov'):'dmt'}">${d!==null?(d>0?'+':'')+d.toLocaleString():'รอ'} ›</div>
+    </div><div class="bar-bg"><div class="bar-f" style="width:${pct}%;background:${cg.c}"></div></div>`;
+  });
+  bh+=`<div class="brow tot"><div class="bic">Σ</div><div class="bnm">รวมทั้งหมด</div>
+    <div class="bpl" style="color:#fff">฿${tp.toLocaleString()}</div>
+    <div class="bac" style="color:${fi>0?(diff<=0?'#86efac':'#fca5a5'):'rgba(255,255,255,.4)'}">
+      ${fi>0?'฿'+ta.toLocaleString():'–'}</div>
+    <div class="bdf" style="color:#fff">${fi>0?(diff>0?'+':'')+diff.toLocaleString():'–'}</div>
+  </div>`;
+  document.getElementById('btbl').innerHTML=bh;
+  renderPie(ca,ta,fi);
+  let ph='';
+  DAYS.forEach(d=>{const p=d.items.reduce((s,i)=>s+i.p,0),fi2=d.items.filter(i=>A[i.id]!==undefined),a=fi2.reduce((s,i)=>s+Number(A[i.id]),0),pct=d.items.length?Math.round(fi2.length/d.items.length*100):0;
+    ph+=`<div class="prog"><div class="ph"><span style="font-size:11px;font-weight:600;color:#18181b">${d.lbl} ${d.date}</span><span style="font-size:10px;color:#71717a">${fi2.length>0?'฿'+a.toLocaleString()+' / ':''}฿${p.toLocaleString()} · ${pct}%</span></div><div class="bar-bg" style="margin:0"><div class="bar-f" style="width:${pct}%;background:${d.col}"></div></div></div>`;
+  });
+  document.getElementById('dprog').innerHTML=ph;
+}
+
+let tempItems=[];
+function openEditor(){document.getElementById('editor-panel').classList.add('on');renderEditorItems();}
+function renderEditorItems(){const dayId=document.getElementById('f-day').value;const day=DAYS.find(d=>d.id===dayId);tempItems=day?JSON.parse(JSON.stringify(sortT(day.items))):[];buildEditorHTML();}
+function buildEditorHTML(){
+  const box=document.getElementById('editor-items-list');let h='';
+  tempItems.forEach((it,i)=>{
+    h+=`<div style="background:#fff;border:1px solid #e4e4e7;padding:8px;border-radius:6px;margin-bottom:8px;position:relative;">
+      <button class="del-btn" onclick="delItem(${i})">🗑️</button>
+      <div style="display:grid;grid-template-columns:55px 1fr;gap:6px;margin-bottom:4px;">
+        <input type="text" class="f-input" style="padding:4px" placeholder="เวลา" value="${it.t}">
+        <input type="text" class="f-input" style="padding:4px" placeholder="ชื่อกิจกรรม" value="${it.n}">
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
+        <select class="f-input" style="padding:4px;font-size:11px">${CG.map(c=>`<option value="${c.k}" ${it.c===c.k?'selected':''}>${c.l}</option>`).join('')}</select>
+        <input type="number" class="f-input" style="padding:4px;text-align:right" placeholder="งบแผน (฿)" value="${it.p}">
+      </div>
+    </div>`;
+  });
+  if(!tempItems.length)h='<div style="text-align:center;color:#71717a;font-size:11px;padding:10px">ไม่มีรายการ</div>';
+  box.innerHTML=h;
+  box.querySelectorAll('div[style*="background:#fff"]').forEach((r,i)=>{
+    const inp=r.querySelectorAll('input,select');
+    inp[0].onchange=e=>tempItems[i].t=e.target.value;inp[1].onchange=e=>tempItems[i].n=e.target.value;inp[2].onchange=e=>tempItems[i].c=e.target.value;inp[3].onchange=e=>tempItems[i].p=Number(e.target.value);
+  });
+}
+function addNewItemRow(){tempItems.push({id:'i'+Date.now().toString().slice(-6),t:'10:00',n:'รายการใหม่',c:'M',p:0,pl:null});buildEditorHTML();}
+function delItem(i){tempItems.splice(i,1);buildEditorHTML();}
+function saveEditorChanges(){
+  const dayId=document.getElementById('f-day').value;const idx=DAYS.findIndex(d=>d.id===dayId);
+  if(idx>-1){DAYS[idx].items=sortT(JSON.parse(JSON.stringify(tempItems)));save();dash();const b=document.getElementById('items-'+dayId);if(b&&b.innerHTML!==''){b.innerHTML='';renderDayScreen(dayId);}showToast('อัปเดตแผนเรียบร้อย! 🎉','#0891b2');document.getElementById('editor-panel').classList.remove('on');}
+}
+
+document.getElementById('tabs').addEventListener('click',e=>{
+  const btn=e.target.closest('.tab');if(!btn)return;
+  const t=btn.dataset.t;
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('on'));
+  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+  btn.classList.add('on');document.getElementById('scr-'+t).classList.add('on');
+  if(t.startsWith('d')){const b=document.getElementById('items-'+t);if(b&&b.innerHTML==='')renderDayScreen(t);}
+  btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});window.scrollTo(0,0);
+});
+
+dash();
+</script>
+</body>
+</html>

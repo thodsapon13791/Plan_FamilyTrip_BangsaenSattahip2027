@@ -68,13 +68,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .wb{background:#fef2f2;border:.5px solid #fca5a5;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#7f1d1d;line-height:1.6}
 .gb{background:#f0fdf4;border:.5px solid #86efac;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#14532d;line-height:1.6}
 .ib strong,.wb strong,.gb strong{font-weight:600;display:block;margin-bottom:3px;font-size:12px}
-.foodbox{background:#fff;border:.5px solid #fed7aa;border-radius:9px;padding:9px 11px;margin-bottom:7px}
-.foodbox-t{font-size:11px;font-weight:700;color:#c2410c;margin-bottom:6px}
-.fooditem{display:flex;align-items:flex-start;gap:6px;padding:5px 0;border-bottom:.5px solid #fef3e2;font-size:11px}
-.fooditem:last-child{border-bottom:none}
-.foodem{font-size:14px;flex-shrink:0;margin-top:1px}
-.foodname{font-weight:600}
-.fooddesc{font-size:10px;color:#71717a;margin-top:1px;line-height:1.45}
 .tip{background:#fff;border:.5px solid #e4e4e7;border-radius:9px;padding:9px 11px;margin-bottom:7px;display:flex;gap:8px}
 .tip-i{font-size:17px;flex-shrink:0}
 .tip-t{font-size:11px;font-weight:600;margin-bottom:2px}
@@ -141,17 +134,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <button class="share-btn" onclick="openShare()">📤 แชร์</button>
     </div>
   </div>
-  <div class="sync-status" id="sync-status">22–26 ม.ค. 2027 · 5 วัน 3 คืน · 13 คน (รถตู้ลำปาง 10 + รถเช่า กทม. 3)</div>
+  <div class="sync-status" id="sync-status"><span id="sync-icon">🔄</span> <span id="sync-label">กำลังเชื่อมต่อ...</span> · 22–26 ม.ค. 2027 · 5 วัน 3 คืน · 13 คน</div>
   <div class="tabs" id="tabs">
     <button class="tab on" data-t="db">📊 สรุปงบ</button>
-    <button class="tab" data-t="rec">💰 บันทึกจ่ายจริง</button>
     <button class="tab" data-t="d1">วัน 1 🚐</button>
     <button class="tab" data-t="d2">วัน 2 🦐</button>
     <button class="tab" data-t="d3">วัน 3 🏖</button>
     <button class="tab" data-t="d4">วัน 4 ⚓</button>
     <button class="tab" data-t="d5">วัน 5 🏠</button>
-    <button class="tab" data-t="food">🍜 อาหาร</button>
-    <button class="tab" data-t="tips">🗺 เคล็ดลับ</button>
+    <button class="tab" data-t="rec">💰 บันทึกจ่ายจริง</button>
   </div>
 </header>
 
@@ -164,13 +155,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="kc"><div class="kl">จ่ายจริง (บันทึก)</div><div class="kv" id="ka" style="color:#16a34a">฿0</div><div class="ks" id="kas">ยังไม่มีบันทึก</div></div>
     <div class="kc"><div class="kl">คงเหลือจากงบ</div><div class="kv" id="kd" style="color:#d97706">–</div><div class="ks">งบ − จ่ายจริง</div></div>
     <div class="kc"><div class="kl">เฉลี่ยต่อคน</div><div class="kv" id="kn" style="color:#7c3aed">฿0</div><div class="ks" id="kns">ตามงบแผน 13 คน</div></div>
-  </div>
-
-  <div class="gb"><strong>🧮 สมมติฐานการคำนวณงบ</strong>
-    • รถตู้ 5 วัน ฿10,000 (ไม่รวมน้ำมัน) + ที่พักคนขับ 3 คืน ฿1,500<br>
-    • น้ำมันรถตู้: ~1,850 กม. ÷ 10 กม./ลิตร = 185 ลิตร × ฿40.69 (ดีเซล ณ 18 ก.ย. 69) ≈ <strong style="display:inline">฿7,600</strong><br>
-    • รถเช่าทีมกรุงเทพ 4 วัน ฿6,000 (รวมน้ำมันแล้ว) สำหรับ 3 คน<br>
-    • ที่พัก: บางแสน 1 คืน + สัตหีบ 2 คืน = 3 คืน · คิดค่าอาหารทุกมื้อของ 13 คน
   </div>
 
   <div class="sec">งบแยกหมวด (แผน vs จ่ายจริง)</div>
@@ -215,54 +199,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
   <div id="items-d5"></div>
 </div>
 
-<!-- FOOD -->
-<div id="scr-food" class="scr">
-  <div class="sec" style="margin-top:4px">🦀 อาหารทะเล บางแสน-อ่างศิลา</div>
-  <div class="foodbox">
-    <div class="foodbox-t">🦐 ตลาดประมงอ่างศิลา — ซื้อสดทำเองคุ้มสุด</div>
-    <div style="font-size:10px;color:#71717a;margin-bottom:6px">ต.อ่างศิลา ริมทะเล บางแสน · เปิดเช้า-เย็น</div>
-    <div id="imgbox-food-angsila"></div>
-    <div class="fooditem"><div class="foodem">🦐</div><div><div class="foodname">กุ้งแม่น้ำ/กุ้งทะเลสด</div><div class="fooddesc">คน 13 คน ให้แม่ค้าชั่งประมาณ 3-4 กก. กำลังดี ต่อรองราคาได้</div></div></div>
-    <div class="fooditem"><div class="foodem">🦀</div><div><div class="foodname">ปูม้า/หอยแมลงภู่</div><div class="fooddesc">นึ่งหรือผัดฉ่าที่บ้านพัก สดกว่าและถูกกว่าไปนั่งร้านเยอะ</div></div></div>
-    <div class="fooditem"><div class="foodem">🐟</div><div><div class="foodname">ปลาหมึกสด / ปลากะพง</div><div class="fooddesc">หมึกไว้ย่าง ปลากะพงนึ่งมะนาว เป็นจานหลักของมื้อ</div></div></div>
-    <div class="fooditem"><div class="foodem">🧂</div><div><div class="foodname">น้ำจิ้มซีฟู้ด + ถ่าน/เตา</div><div class="fooddesc">มีขายในตลาด ซื้อติดไปเลย เช็กกับที่พักว่ามีเตาย่างให้ไหม</div></div></div>
-  </div>
-  <div class="foodbox">
-    <div class="foodbox-t">🏖 ร้านริมหาดบางแสน</div>
-    <div style="font-size:10px;color:#71717a;margin-bottom:6px">ถนนเลียบหาดบางแสน</div>
-    <div id="imgbox-food-bangsaen"></div>
-    <div class="fooditem"><div class="foodem">🍢</div><div><div class="foodname">ไก่ย่าง/หมึกย่างเดินหาด</div><div class="fooddesc">ร้านเข็นขายตลอดแนวหาด กินเล่นระหว่างนั่งชายหาด</div></div></div>
-    <div class="fooditem"><div class="foodem">🍹</div><div><div class="foodname">มะพร้าว/น้ำแข็งใส</div><div class="fooddesc">คลายร้อนหลังเล่นน้ำ มีขายทั่วชายหาด</div></div></div>
-  </div>
-  <div class="sec">⚓ อาหารทะเล สัตหีบ</div>
-  <div class="foodbox">
-    <div class="foodbox-t">🦑 ซีฟู้ดริมทะเลสัตหีบ + จุดตกหมึก</div>
-    <div style="font-size:10px;color:#71717a;margin-bottom:6px">แนวท่าเทียบเรือ/ร้านริมทะเลสัตหีบ</div>
-    <div id="imgbox-food-sattahip"></div>
-    <div class="fooditem"><div class="foodem">🦑</div><div><div class="foodname">ตกหมึกกลางคืน</div><div class="fooddesc">เช่าคันเบ็ด/ไฟล่อหมึกตามจุดที่มีบริการ เด็กๆ ชอบ</div></div></div>
-    <div class="fooditem"><div class="foodem">🔥</div><div><div class="foodname">หมึกย่าง/หมึกชุบแป้งทอด</div><div class="fooddesc">สดจากเรือประมงพื้นบ้าน ราคาย่อมเยากว่าฝั่งพัทยา</div></div></div>
-    <div class="fooditem"><div class="foodem">🍚</div><div><div class="foodname">ข้าวผัดปู/ต้มยำทะเล</div><div class="fooddesc">จานหลักมื้อเย็น สั่งรวมกันอิ่มทั้ง 13 คน</div></div></div>
-  </div>
-</div>
+<!-- FOOD and TIPS sections removed -->
 
-<!-- TIPS -->
-<div id="scr-tips" class="scr">
-  <div class="sec" style="margin-top:4px">การเดินทาง</div>
-  <div class="tip"><div class="tip-i">⛽</div><div><div class="tip-t">วิธีคิดค่าน้ำมันรถตู้</div><div class="tip-p">ระยะรวมทั้งทริปประมาณ 1,850 กม. (ลำปาง→ปทุม 610 · ปทุม→บางแสน 150 · วิ่งในพื้นที่ ~250 · สัตหีบ→ลำปาง ~800) ÷ 10 กม./ลิตร = 185 ลิตร × ราคาดีเซล 40.69 บาท ≈ 7,530 บาท ตั้งงบไว้ 7,600 บาท · ถ้ารถกินน้ำมัน 8 กม./ลิตร จะขยับเป็นราว 9,400 บาท ควรเผื่อเงินสดไว้</div></div></div>
-  <div class="tip"><div class="tip-i">🚗</div><div><div class="tip-t">ทีมกรุงเทพ 3 คน</div><div class="tip-p">เช่ารถ 4 วัน (23-26 ม.ค.) รวมน้ำมันแล้ว 6,000 บาท · นัดเจอกันที่บางแสนช่วงบ่ายวันที่ 23 · อย่าลืมเช็กประกันชั้น 1 และวงเงินมัดจำบัตรเครดิตของบริษัทเช่ารถ</div></div></div>
-  <div class="tip"><div class="tip-i">🛏</div><div><div class="tip-t">ที่พักคนขับรถตู้</div><div class="tip-p">ตั้งงบไว้ 3 คืน คืนละ 500 บาท = 1,500 บาท · เช็กกับที่พักว่ามีห้องคนขับให้ไหม บางที่พักรวมมาให้แล้วจะประหยัดส่วนนี้ไป</div></div></div>
-  <div class="tip"><div class="tip-i">🚐</div><div><div class="tip-t">ขับข้ามคืน 22 ม.ค.</div><div class="tip-p">ออก 20:00 ถึงปทุมธานีราว 06:00-07:00 · แวะพักรถทุก 2-3 ชม. ที่ปั๊มใหญ่ริมทาง · คนขับควรได้นอนเต็มที่ช่วงกลางวันที่บ้านอ้ายเค</div></div></div>
-  <div class="sec">ที่เที่ยวหลัก</div>
-  <div class="tip"><div class="tip-i">🏖</div><div><div class="tip-t">หาดบางแสน</div><div class="tip-p">หาดทรายยาว มีเก้าอี้ผ้าใบ+ร่มให้เช่า (ประมาณชุดละ 50-100 บาท) เหมาะเล่นน้ำเช้าก่อนแดดจัด · ระวังของมีค่าเวลาลงน้ำ</div></div></div>
-  <div class="tip"><div class="tip-i">🐠</div><div><div class="tip-t">Bangsaen Aquarium (สถาบันวิทยาศาสตร์ทางทะเล ม.บูรพา)</div><div class="tip-p">ตั้งงบค่าเข้าไว้ 120 บาท/คน × 13 คน = 1,560 บาท · เช็กราคาและเวลาเปิด-ปิดล่าสุดก่อนไป</div></div></div>
-  <div class="tip"><div class="tip-i">⚓</div><div><div class="tip-t">เรือหลวงจักรีนฤเบศร</div><div class="tip-p">เข้าชมฟรี 09:00-17:00 น. เตรียมบัตรประชาชนทุกคน แต่งกายสุภาพ ห้ามนำอาหารเข้า · ควรโทรเช็กกับกองเรือก่อนวันไป เพราะบางวันปิดตามภารกิจราชการ</div></div></div>
-  <div class="tip"><div class="tip-i">🌺</div><div><div class="tip-t">ตัวเลือกวันที่ 25 (วันเพิ่ม)</div><div class="tip-p">หาดนางรำ/เขาแหลมปู่เจ้า (วิวสวย เงียบกว่า) · วัดญาณสังวราราม (เข้าฟรี) · สวนนงนุช (ค่าเข้ามีหลายแพ็กเกจ ราว 200-500 บาท/คน) เลือกอย่างใดอย่างหนึ่งพอ ถ้าเลือกวัดญาณฯ จะเซฟงบไปได้เกือบ 2,000</div></div></div>
-  <div class="sec">งบและการบันทึก</div>
-  <div class="tip"><div class="tip-i">💰</div><div><div class="tip-t">บันทึกจ่ายจริงแยกหน้า</div><div class="tip-p">แท็บ "💰 บันทึกจ่ายจริง" ใช้กดเพิ่มรายการได้อิสระ เลือกวัน + หมวดหมู่ + ยอดเงิน ไม่ต้องผูกกับแผน · ถ้าแผนเปลี่ยนกลางทางก็ยังบันทึกได้ปกติ แล้วสรุปจะไปรวมในแท็บ "📊 สรุปงบ" ให้เอง</div></div></div>
-  <div class="tip"><div class="tip-i">🧾</div><div><div class="tip-t">เงินกองกลาง</div><div class="tip-p">งบรวมประมาณ ฿102,000 หาร 13 คน ≈ 7,900 บาท/คน · แนะนำเก็บเงินกองกลางคนละ 8,000 ล่วงหน้า แล้วใช้หน้าบันทึกนี้ตามยอดจริง เหลือค่อยคืนกัน</div></div></div>
-  <div class="tip"><div class="tip-i">☀️</div><div><div class="tip-t">มกราคม = หน้าแล้ง</div><div class="tip-p">ทะเลตะวันออกคลื่นลมสงบ แดดแรงตอนสาย · พกครีมกันแดด หมวก และเสื้อกันหนาวบางๆ ไว้ตอนเช้า/กลางคืนบนรถ</div></div></div>
-  <div class="tip"><div class="tip-i">📷</div><div><div class="tip-t">รูปสลิป/รูปที่แนบ</div><div class="tip-p">รูปเก็บไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น ไม่รวมอยู่ในลิงก์แชร์ · ถ้าล้างข้อมูลเบราว์เซอร์รูปจะหาย แต่ตัวเลขยังอยู่ในลิงก์แชร์</div></div></div>
-</div>
 
 </div>
 
@@ -291,14 +229,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <!-- SHARE -->
 <div class="panel" id="share-panel" onclick="closeModal(event,'share-panel')">
   <div class="pbox">
-    <h3>📤 แชร์แผนและยอดจ่ายจริง</h3>
-    <p class="sub">ลิงก์นี้ฝังทั้งแผนและรายการจ่ายจริงทั้งหมด (ไม่รวมรูปภาพ)</p>
+    <h3>📤 แชร์หน้านี้</h3>
+    <p class="sub">ทุกคนที่เปิดลิงก์นี้จะเห็นแผน ยอดจ่ายจริง และรูปที่แนบชุดเดียวกัน แก้ที่ใครก็เห็นเหมือนกันแบบเรียลไทม์</p>
     <div class="share-url" id="share-url">กำลังสร้างลิงก์...</div>
     <div class="sbtn-row">
       <button class="sbtn" onclick="closePanel('share-panel')">ปิด</button>
       <button class="sbtn primary" onclick="copyShareUrl()">📋 คัดลอกลิงก์</button>
     </div>
-    <div class="sbtn-row"><button class="sbtn danger" onclick="resetAll()">♻️ รีเซ็ตกลับเป็นแผนตั้งต้น</button></div>
+    <div class="sbtn-row"><button class="sbtn danger" onclick="resetAll()">♻️ รีเซ็ตกลับเป็นแผนตั้งต้น (มีผลกับทุกคน)</button></div>
   </div>
 </div>
 
@@ -329,6 +267,22 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="toast" id="toast"></div>
 <div class="img-viewer" id="img-viewer" onclick="closeImgViewer()"><img id="img-viewer-img" src="" alt=""></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-storage-compat.js"></script>
+<script>
+var firebaseConfig={
+  apiKey:"AIzaSyCeihmmJGWULgl1h9A8CZ-3rNTwdQmJsdg",
+  authDomain:"chonburi-family-trip-2027.firebaseapp.com",
+  projectId:"chonburi-family-trip-2027",
+  storageBucket:"chonburi-family-trip-2027.firebasestorage.app",
+  messagingSenderId:"238871743179",
+  appId:"1:238871743179:web:7d960631fee57a6fff694e"
+};
+firebase.initializeApp(firebaseConfig);
+var db=firebase.firestore();
+var storage=firebase.storage();
+</script>
 <script>
 var PPL=13, FUEL=40.69;
 
@@ -407,29 +361,53 @@ var DEFAULT_DAYS=[
  ]}
 ];
 
-var K_PLAN='famtrip27_plan_v2',K_EXP='famtrip27_exp_v2',K_IMG='famtrip27_img_v2';
-function rd(k,fb){try{var r=localStorage.getItem(k);return r?JSON.parse(r):fb;}catch(e){return fb;}}
-var DAYS=rd(K_PLAN,null)||JSON.parse(JSON.stringify(DEFAULT_DAYS));
-var EXP=rd(K_EXP,[]);
-var IMG=rd(K_IMG,{});
+var DAYS=JSON.parse(JSON.stringify(DEFAULT_DAYS));
+var EXP=[];
+var IMG={};
+
+/* ---------- FIRESTORE REALTIME SYNC ---------- */
+var docRef=db.collection('famtrip2027').doc('data');
+var firstSnapshot=true;
+function setSyncStatus(state){
+ var ic=document.getElementById('sync-icon'),lb=document.getElementById('sync-label');if(!ic||!lb)return;
+ if(state==='synced'){ic.textContent='🟢';lb.textContent='ซิงก์เรียบร้อย';}
+ else if(state==='syncing'){ic.textContent='🔄';lb.textContent='กำลังบันทึก...';}
+ else if(state==='error'){ic.textContent='🔴';lb.textContent='บันทึกไม่สำเร็จ ลองใหม่';}
+ else{ic.textContent='🔄';lb.textContent='กำลังเชื่อมต่อ...';}
+}
+docRef.onSnapshot(function(snap){
+ if(snap.exists){
+  var data=snap.data()||{};
+  DAYS=data.plan||DAYS;EXP=data.exp||EXP;IMG=data.imgs||IMG;
+  setSyncStatus('synced');
+  renderAllDays();dash();renderExpenses();
+ }else if(firstSnapshot){
+  save();
+ }
+ firstSnapshot=false;
+},function(err){setSyncStatus('error');console.error(err);});
 
 function toB64(t){var b=new TextEncoder().encode(t),s='';b.forEach(function(x){s+=String.fromCharCode(x);});return btoa(s);}
 function fromB64(t){var b=atob(t),arr=Uint8Array.from(b,function(c){return c.charCodeAt(0);});return new TextDecoder().decode(arr);}
-try{var h=location.hash.slice(1);if(h&&h.indexOf('data=')===0){var d=JSON.parse(fromB64(decodeURIComponent(h.slice(5))));if(d.plan){DAYS=d.plan;}if(d.exp){EXP=d.exp;}save();}}catch(e){}
 
 function tv(t){var m=String(t||'').match(/(\d{1,2})[:.](\d{2})/);return m?Number(m[1])*60+Number(m[2]):9999;}
 function sortT(items){return items.map(function(x,i){return{x:x,i:i,t:tv(x.t)};}).sort(function(a,b){return(a.t-b.t)||(a.i-b.i);}).map(function(r){return r.x;});}
-function save(){DAYS.forEach(function(d){if(Array.isArray(d.items))d.items=sortT(d.items);});try{localStorage.setItem(K_PLAN,JSON.stringify(DAYS));localStorage.setItem(K_EXP,JSON.stringify(EXP));}catch(e){}}
-function saveImgs(){try{localStorage.setItem(K_IMG,JSON.stringify(IMG));return true;}catch(e){return false;}}
+function save(){
+ DAYS.forEach(function(d){if(Array.isArray(d.items))d.items=sortT(d.items);});
+ setSyncStatus('syncing');
+ docRef.set({plan:DAYS,exp:EXP,imgs:IMG,updatedAt:firebase.firestore.FieldValue.serverTimestamp()})
+  .then(function(){setSyncStatus('synced');})
+  .catch(function(e){setSyncStatus('error');console.error(e);});
+}
 function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function money(n){return '฿'+Number(n||0).toLocaleString();}
 function showToast(msg,bg){var t=document.getElementById('toast');t.textContent=msg;t.style.background=bg||'#16a34a';t.classList.add('on');setTimeout(function(){t.classList.remove('on');},2000);}
 function closePanel(id){document.getElementById(id).classList.remove('on');}
 function closeModal(e,id){if(!e||e.target===document.getElementById(id))closePanel(id);}
-function shareUrl(){return location.href.split('#')[0]+'#data='+encodeURIComponent(toB64(JSON.stringify({plan:DAYS,exp:EXP})));}
+function shareUrl(){return location.href.split('#')[0].split('?')[0];}
 function openShare(){document.getElementById('share-url').textContent=shareUrl();document.getElementById('share-panel').classList.add('on');}
 function copyShareUrl(){var u=document.getElementById('share-url').textContent;if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){showToast('คัดลอกลิงก์เรียบร้อย! 🎉','#0891b2');closePanel('share-panel');});}else{showToast('กดค้างที่ลิงก์เพื่อคัดลอก','#71717a');}}
-function resetAll(){if(!confirm('รีเซ็ตแผนกลับเป็นค่าตั้งต้น? (รายการจ่ายจริงจะยังอยู่)'))return;DAYS=JSON.parse(JSON.stringify(DEFAULT_DAYS));save();closePanel('share-panel');renderAllDays();dash();showToast('รีเซ็ตแผนแล้ว','#71717a');}
+function resetAll(){if(!confirm('รีเซ็ตแผนกลับเป็นค่าตั้งต้น สำหรับทุกคน? (รายการจ่ายจริงจะยังอยู่)'))return;DAYS=JSON.parse(JSON.stringify(DEFAULT_DAYS));save();closePanel('share-panel');renderAllDays();dash();showToast('รีเซ็ตแผนแล้ว','#71717a');}
 
 /* ---------- PLAN DAYS ---------- */
 function pc(k){var p=PL[k];if(!p)return'';var tags=(p.tags||[]).map(function(tg){return'<span class="ptag">'+tg+'</span>';}).join('');
@@ -519,7 +497,7 @@ function saveExpense(){
  showToast(recEditId?'แก้ไขเรียบร้อย ✓':'บันทึก '+money(amt)+' แล้ว ✓','#16a34a');
  recEditId=null;
 }
-function delExpense(id){if(!confirm('ลบรายการนี้?'))return;EXP=EXP.filter(function(x){return x.id!==id;});delete IMG[id];saveImgs();save();renderExpenses();dash();renderAllDays();showToast('ลบแล้ว','#71717a');}
+function delExpense(id){if(!confirm('ลบรายการนี้?'))return;EXP=EXP.filter(function(x){return x.id!==id;});if(IMG[id]){storage.ref('famtrip2027-images/'+id+'.jpg').delete().catch(function(){});delete IMG[id];}save();renderExpenses();dash();renderAllDays();showToast('ลบแล้ว','#71717a');}
 
 function renderExpenses(){
  var box=document.getElementById('exp-list');
@@ -559,25 +537,44 @@ function imgBoxHTML(id){
  if(IMG[id])return'<div class="img-wrap"><img class="item-img" src="'+IMG[id]+'" onclick="viewImg(\''+id+'\')" alt=""><button class="img-del" onclick="delImg(\''+id+'\')">✕</button></div>';
  return'<label class="img-add">📷 แนบรูป/สลิป<input type="file" accept="image/*" style="display:none" onchange="handleImgUpload(\''+id+'\',this)"></label>';
 }
+function imgUploadingHTML(){return'<div class="img-add" style="pointer-events:none;opacity:.7">⏳ กำลังอัปโหลด...</div>';}
 function handleImgUpload(id,inputEl){
  var file=inputEl.files&&inputEl.files[0];if(!file)return;
  var reader=new FileReader();
  reader.onload=function(ev){
   var img=new Image();
   img.onload=function(){
-   var maxW=900,scale=Math.min(1,maxW/img.width),cv=document.createElement('canvas');
+   var maxW=1000,scale=Math.min(1,maxW/img.width),cv=document.createElement('canvas');
    cv.width=Math.round(img.width*scale);cv.height=Math.round(img.height*scale);
    cv.getContext('2d').drawImage(img,0,0,cv.width,cv.height);
-   IMG[id]=cv.toDataURL('image/jpeg',0.72);
-   var ok=saveImgs();
-   var box=document.getElementById('imgbox-'+id);if(box)box.innerHTML=imgBoxHTML(id);
-   showToast(ok?'เพิ่มรูปเรียบร้อย ✓':'พื้นที่เก็บข้อมูลเต็ม',ok?'#16a34a':'#dc2626');
+   var box=document.getElementById('imgbox-'+id);if(box)box.innerHTML=imgUploadingHTML();
+   cv.toBlob(function(blob){
+    if(!blob){var b0=document.getElementById('imgbox-'+id);if(b0)b0.innerHTML=imgBoxHTML(id);showToast('แปลงรูปไม่สำเร็จ','#dc2626');return;}
+    storage.ref('famtrip2027-images/'+id+'.jpg').put(blob,{contentType:'image/jpeg'})
+     .then(function(snap){return snap.ref.getDownloadURL();})
+     .then(function(url){
+      IMG[id]=url;save();
+      var b=document.getElementById('imgbox-'+id);if(b)b.innerHTML=imgBoxHTML(id);
+      showToast('เพิ่มรูปเรียบร้อย ✓','#16a34a');
+     })
+     .catch(function(e){
+      console.error(e);
+      var b=document.getElementById('imgbox-'+id);if(b)b.innerHTML=imgBoxHTML(id);
+      showToast('อัปโหลดรูปไม่สำเร็จ ลองใหม่','#dc2626');
+     });
+   },'image/jpeg',0.72);
   };
   img.src=ev.target.result;
  };
  reader.readAsDataURL(file);inputEl.value='';
 }
-function delImg(id){delete IMG[id];saveImgs();var b=document.getElementById('imgbox-'+id);if(b)b.innerHTML=imgBoxHTML(id);showToast('ลบรูปแล้ว','#71717a');}
+function delImg(id){
+ if(!IMG[id])return;
+ storage.ref('famtrip2027-images/'+id+'.jpg').delete().catch(function(){});
+ delete IMG[id];save();
+ var b=document.getElementById('imgbox-'+id);if(b)b.innerHTML=imgBoxHTML(id);
+ showToast('ลบรูปแล้ว','#71717a');
+}
 function viewImg(id){if(!IMG[id])return;document.getElementById('img-viewer-img').src=IMG[id];document.getElementById('img-viewer').classList.add('on');}
 function closeImgViewer(){document.getElementById('img-viewer').classList.remove('on');document.getElementById('img-viewer-img').src='';}
 
@@ -714,8 +711,8 @@ document.getElementById('tabs').addEventListener('click',function(e){
  btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});window.scrollTo(0,0);
 });
 
-save();dash();renderExpenses();
-['food-angsila','food-bangsaen','food-sattahip'].forEach(function(id){var el=document.getElementById('imgbox-'+id);if(el)el.innerHTML=imgBoxHTML(id);});
+dash();renderExpenses();
+setSyncStatus('connecting');
 </script>
 </body>
 </html>

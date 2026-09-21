@@ -62,6 +62,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .plan-amt{font-size:12px;font-weight:700;color:#0f172a;border-bottom:1px dashed #94a3b8;cursor:pointer;padding:1px 2px}
 .plan-amt:active{background:#e0f2fe}
 .plan-amt-input{width:82px;padding:3px 6px;border:1.5px solid #0891b2;border-radius:6px;font-size:12px;font-weight:700;text-align:right;font-family:inherit;background:#fefce8}
+.plan-amt-save{background:#16a34a;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.plan-amt-save:active{background:#15803d}
+.paid-row{margin-top:5px;background:#f0fdf4;border:.5px solid #bbf7d0;border-radius:7px;padding:5px 8px;font-size:10px;color:#166534;cursor:pointer;display:flex;justify-content:space-between;gap:6px;align-items:center}
+.paid-row.over{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.paid-row:active{filter:brightness(.97)}
 .mini-btn{background:#0891b2;color:#fff;border:none;border-radius:6px;padding:5px 9px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit}
 .mini-btn:active{background:#0e7490}
 .ib{background:#fff8f0;border:.5px solid #fbbf24;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#92400e;line-height:1.6}
@@ -372,20 +377,21 @@ function setSyncStatus(state){
  var ic=document.getElementById('sync-icon'),lb=document.getElementById('sync-label');if(!ic||!lb)return;
  if(state==='synced'){ic.textContent='🟢';lb.textContent='ซิงก์เรียบร้อย';}
  else if(state==='syncing'){ic.textContent='🔄';lb.textContent='กำลังบันทึก...';}
+ else if(state==='offline'){ic.textContent='📶';lb.textContent='ออฟไลน์ (ข้อมูลอาจไม่ใหม่ล่าสุด)';}
  else if(state==='error'){ic.textContent='🔴';lb.textContent='บันทึกไม่สำเร็จ ลองใหม่';}
  else{ic.textContent='🔄';lb.textContent='กำลังเชื่อมต่อ...';}
 }
-docRef.onSnapshot(function(snap){
+docRef.onSnapshot({includeMetadataChanges:true},function(snap){
  if(snap.exists){
   var data=snap.data()||{};
   DAYS=data.plan||DAYS;EXP=data.exp||EXP;IMG=data.imgs||IMG;
-  setSyncStatus('synced');
+  setSyncStatus(snap.metadata.fromCache?'offline':'synced');
   renderAllDays();dash();renderExpenses();
  }else if(firstSnapshot){
   save();
  }
  firstSnapshot=false;
-},function(err){setSyncStatus('error');console.error(err);});
+},function(err){setSyncStatus('error');console.error('Firestore sync error:',err);});
 
 function toB64(t){var b=new TextEncoder().encode(t),s='';b.forEach(function(x){s+=String.fromCharCode(x);});return btoa(s);}
 function fromB64(t){var b=atob(t),arr=Uint8Array.from(b,function(c){return c.charCodeAt(0);});return new TextDecoder().decode(arr);}
@@ -426,12 +432,16 @@ function renderDayScreen(id){
  if(!day.items.length)h+='<div class="empty">ไม่มีรายการ กด "✏️ แก้ไข"</div>';
  day.items.forEach(function(it){
   var cat=CM[it.c]||{l:'',bg:'#f4f4f5',cl:'#555'};
+  var paidList=EXP.filter(function(e){return e.pid===it.id;});
+  var paidSum=paidList.reduce(function(s,e){return s+Number(e.amt||0);},0);
+  var over=paidSum>it.p;
   h+='<div class="tli"><div class="tlt">'+esc(it.t)+'</div><div class="tlb">'
    +'<div class="tln">'+esc(it.n)+'</div>'
    +(it.c?'<span class="cat" style="background:'+cat.bg+';color:'+cat.cl+'">'+cat.l+'</span>':'')
    +(it.pl?pc(it.pl):'')
    +'<div class="plan-row"><span style="font-size:10px;color:#71717a">งบแผน <span class="plan-amt" id="pa-'+day.id+'-'+it.id+'" onclick="startEditPlan(\''+day.id+'\',\''+it.id+'\')">'+money(it.p)+'</span></span>'
-   +'<button class="mini-btn" onclick="quickRecord(\''+day.id+'\',\''+it.c+'\','+JSON.stringify(it.n).replace(/"/g,'&quot;')+','+(it.p||0)+')">➕ จ่ายจริง</button></div>'
+   +'<button class="mini-btn" onclick="quickRecord(\''+day.id+'\',\''+it.c+'\','+JSON.stringify(it.n).replace(/"/g,'&quot;')+','+(it.p||0)+',\''+it.id+'\')">➕ จ่ายจริง</button></div>'
+   +(paidList.length?'<div class="paid-row'+(over?' over':'')+'" onclick="openItemExpenses(\''+it.id+'\','+JSON.stringify(it.n).replace(/"/g,'&quot;')+','+(it.p||0)+')"><span>💰 จ่ายจริงแล้ว '+money(paidSum)+' ('+paidList.length+' รายการ)</span><span>แก้ไข ›</span></div>':'')
    +'</div></div>';
  });
  h+='</div></div>';el.innerHTML=h;
@@ -442,25 +452,33 @@ function startEditPlan(dayId,itemId){
  var span=document.getElementById('pa-'+dayId+'-'+itemId);if(!span)return;
  var day=null;DAYS.forEach(function(d){if(d.id===dayId)day=d;});if(!day)return;
  var it=null;day.items.forEach(function(x){if(x.id===itemId)it=x;});if(!it)return;
+ var wrap=document.createElement('span');wrap.style.display='inline-flex';wrap.style.gap='4px';wrap.style.alignItems='center';
  var input=document.createElement('input');
  input.type='number';input.inputMode='decimal';input.className='plan-amt-input';input.value=it.p||0;
- span.replaceWith(input);input.focus();input.select();
+ var btn=document.createElement('button');btn.type='button';btn.className='plan-amt-save';btn.textContent='✓ บันทึก';
+ wrap.appendChild(input);wrap.appendChild(btn);
+ span.replaceWith(wrap);input.focus();input.select();
+ var done=false;
  function commit(){
+  if(done)return;done=true;
   var v=Number(input.value);if(isNaN(v)||v<0)v=it.p||0;
   it.p=v;save();renderDayScreen(dayId);dash();
+  showToast('บันทึกงบแผนแล้ว ✓','#16a34a');
  }
- input.addEventListener('blur',commit);
- input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();input.blur();}if(e.key==='Escape'){e.preventDefault();input.value=it.p;input.blur();}});
+ function cancel(){if(done)return;done=true;renderDayScreen(dayId);}
+ btn.addEventListener('click',function(e){e.preventDefault();commit();});
+ input.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();commit();}if(e.key==='Escape'){e.preventDefault();cancel();}});
+ input.addEventListener('blur',function(){setTimeout(function(){if(!done)commit();},150);});
 }
 function tog(id){var di=document.getElementById('di-'+id),ch=document.getElementById('ch-'+id);if(!di)return;var open=di.dataset.open!=='0';di.dataset.open=open?'0':'1';di.style.display=open?'none':'block';if(ch)ch.textContent=open?'▸':'▾';}
 
 /* ---------- EXPENSE RECORD ---------- */
-var recCat='F',recEditId=null;
+var recCat='F',recEditId=null,recPid=null;
 function dayOptions(sel){var h='';DAYS.forEach(function(d){h+='<option value="'+d.id+'"'+(sel===d.id?' selected':'')+'>'+esc(d.lbl)+' — '+esc(d.date)+'</option>';});h+='<option value="x"'+(sel==='x'?' selected':'')+'>ไม่ระบุวัน</option>';return h;}
 function renderCatChips(){document.getElementById('rec-cats').innerHTML=CG.map(function(c){return'<button type="button" class="catchip'+(recCat===c.k?' on':'')+'" style="'+(recCat===c.k?'background:'+c.c:'')+'" onclick="pickCat(\''+c.k+'\')">'+c.l+'</button>';}).join('');}
 function pickCat(k){recCat=k;renderCatChips();}
-function openRecord(day,cat,name,amt){
- recEditId=null;recCat=cat||'F';
+function openRecord(day,cat,name,amt,pid){
+ recEditId=null;recCat=cat||'F';recPid=pid||null;
  document.getElementById('rec-title').textContent='💰 บันทึกค่าใช้จ่าย';
  renderCatChips();
  document.getElementById('rec-day').innerHTML=dayOptions(day||currentDay());
@@ -471,11 +489,11 @@ function openRecord(day,cat,name,amt){
  document.getElementById('rec-panel').classList.add('on');
  setTimeout(function(){document.getElementById('rec-amt').focus();},250);
 }
-function quickRecord(day,cat,name,amt){openRecord(day,cat,name,amt);}
+function quickRecord(day,cat,name,amt,pid){openRecord(day,cat,name,amt,pid);}
 function currentDay(){var t=document.querySelector('.tab.on');var k=t?t.dataset.t:'';return /^d\d$/.test(k)?k:'d1';}
 function editExpense(id){
  var e=null;EXP.forEach(function(x){if(x.id===id)e=x;});if(!e)return;
- recEditId=id;recCat=e.cat;
+ recEditId=id;recCat=e.cat;recPid=e.pid||null;
  document.getElementById('rec-title').textContent='✏️ แก้ไขรายการ';
  renderCatChips();
  document.getElementById('rec-day').innerHTML=dayOptions(e.day);
@@ -488,16 +506,35 @@ function editExpense(id){
 function saveExpense(){
  var amt=Number(document.getElementById('rec-amt').value);
  if(!amt||amt<=0){showToast('ใส่จำนวนเงินก่อนนะ','#dc2626');return;}
- var obj={cat:recCat,day:document.getElementById('rec-day').value,
+ var obj={cat:recCat,day:document.getElementById('rec-day').value,pid:recPid||null,
   name:document.getElementById('rec-name').value.trim()||(CG.filter(function(c){return c.k===recCat;})[0].l),
   amt:amt,by:document.getElementById('rec-by').value.trim(),note:document.getElementById('rec-note').value.trim()};
  if(recEditId){EXP.forEach(function(x,i){if(x.id===recEditId){obj.id=recEditId;obj.ts=x.ts;EXP[i]=obj;}});}
  else{obj.id='e'+Date.now();obj.ts=Date.now();EXP.push(obj);}
  save();closePanel('rec-panel');renderExpenses();dash();renderAllDays();
  showToast(recEditId?'แก้ไขเรียบร้อย ✓':'บันทึก '+money(amt)+' แล้ว ✓','#16a34a');
- recEditId=null;
+ recEditId=null;recPid=null;
 }
-function delExpense(id){if(!confirm('ลบรายการนี้?'))return;EXP=EXP.filter(function(x){return x.id!==id;});if(IMG[id]){storage.ref('famtrip2027-images/'+id+'.jpg').delete().catch(function(){});delete IMG[id];}save();renderExpenses();dash();renderAllDays();showToast('ลบแล้ว','#71717a');}
+function delExpense(id){if(!confirm('ลบรายการนี้?'))return;EXP=EXP.filter(function(x){return x.id!==id;});if(IMG[id]){storage.ref('famtrip2027-images/'+id+'.jpg').delete().catch(function(){});delete IMG[id];}save();renderExpenses();dash();renderAllDays();closePanel('cat-panel');showToast('ลบแล้ว','#71717a');}
+
+function openItemExpenses(itemId,itemName,planAmt){
+ var ex=EXP.filter(function(e){return e.pid===itemId;});
+ var a=ex.reduce(function(s,e){return s+Number(e.amt||0);},0);
+ var h='';
+ if(!ex.length)h='<div class="empty">ยังไม่มีการบันทึกจ่ายจริงสำหรับรายการนี้</div>';
+ ex.forEach(function(e){
+  var cg=CG.filter(function(c){return c.k===e.cat;})[0]||CG[6];
+  h+='<div class="exp-item" style="border-left-color:'+cg.c+'"><div class="exp-top"><div class="exp-nm">'+esc(e.name)+'</div><div class="exp-am">'+money(e.amt)+'</div></div>'
+   +(e.by?'<div class="exp-meta"><span>จ่ายโดย '+esc(e.by)+'</span></div>':'')
+   +(e.note?'<div class="exp-note">'+esc(e.note)+'</div>':'')
+   +'<div class="exp-acts"><button class="tiny-btn" onclick="editExpense(\''+e.id+'\')">✏️ แก้ไข</button>'
+   +'<button class="tiny-btn" style="color:#b91c1c" onclick="delExpense(\''+e.id+'\')">🗑 ลบ</button></div></div>';
+ });
+ document.getElementById('cat-title').textContent=itemName;
+ document.getElementById('cat-sum').textContent='งบแผน '+money(planAmt)+' · จ่ายจริงรวม '+money(a)+(a>planAmt?' (เกินงบ)':'');
+ document.getElementById('cat-items').innerHTML=h;
+ document.getElementById('cat-panel').classList.add('on');
+}
 
 function renderExpenses(){
  var box=document.getElementById('exp-list');

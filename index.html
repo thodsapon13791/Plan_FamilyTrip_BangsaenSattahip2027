@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="theme-color" content="#0891b2">
+<meta name="theme-color" content="#0c4a6e">
 <title>🏖️ ทริปครอบครัว บางแสน-สัตหีบ 2027</title>
 <style>
 :root{color-scheme:light}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f1f5f9;color:#18181b;min-height:100vh}
-.hdr{background:linear-gradient(135deg,#0891b2 0%,#ea580c 100%);color:#fff;padding:10px 12px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.3)}
+.hdr{background:linear-gradient(135deg,#0c4a6e 0%,#0369a1 100%);color:#fff;padding:10px 12px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.3)}
 .ht{font-size:14px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;gap:6px}
 .hdr-btns{display:flex;gap:6px;flex-shrink:0}
 .share-btn{background:rgba(255,255,255,.2);border:none;color:#fff;font-size:11px;padding:4px 10px;border-radius:8px;cursor:pointer}
@@ -18,8 +18,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sync-status{font-size:10px;color:rgba(255,255,255,.8);margin:0 0 5px;text-align:right}
 .tabs{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
-.tab{flex-shrink:0;padding:7px 11px;border-radius:7px 7px 0 0;font-size:12px;font-weight:500;cursor:pointer;color:rgba(255,255,255,.6);background:rgba(255,255,255,.1);border:none;white-space:nowrap}
-.tab.on{background:#fff;color:#0891b2}
+.daypills{display:none;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 11px 4px;background:#fff;border-bottom:1px solid #e4e4e7;position:sticky;top:0;z-index:90}
+.daypills::-webkit-scrollbar{display:none}
+.daypill{flex-shrink:0;padding:7px 13px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1.5px solid #e4e4e7;background:#f9fafb;color:#3f3f46;white-space:nowrap}
+.daypill.on{background:linear-gradient(135deg,#0c4a6e,#0369a1);border-color:transparent;color:#fff}
+.bottomnav{position:fixed;left:0;right:0;bottom:0;z-index:150;background:#fff;border-top:1px solid #e4e4e7;display:flex;box-shadow:0 -2px 10px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom,0px)}
+.navbtn{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 4px 8px;background:none;border:none;cursor:pointer;font-family:inherit;color:#a1a1aa;font-size:10px;font-weight:600}
+.navbtn .navicon{font-size:19px;line-height:1}
+.navbtn.on{color:#0369a1}
+body{padding-bottom:64px}
 .wrap{max-width:480px;margin:0 auto}
 .scr{display:none;padding:11px}
 .scr.on{display:block}
@@ -33,7 +40,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .brow{display:flex;align-items:center;padding:8px 11px;border-bottom:.5px solid #e4e4e7;gap:7px;font-size:11px}
 .brow.clickable{cursor:pointer}.brow.clickable:active{background:#f1f5f9}
 .brow:last-child{border-bottom:none}
-.brow.tot{background:linear-gradient(90deg,#0891b2,#ea580c);color:#fff}
+.brow.tot{background:linear-gradient(90deg,#0c4a6e,#0369a1);color:#fff}
 .bic{width:18px;text-align:center;flex-shrink:0}.bnm{flex:1}
 .bpl{width:56px;text-align:right;color:#71717a;font-size:10px}
 .bac{width:56px;text-align:right;font-weight:600}
@@ -61,13 +68,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .plan-row{display:flex;align-items:center;justify-content:space-between;gap:6px;background:#f8fafc;padding:6px 8px;border-radius:7px;margin-top:5px}
 .plan-amt{font-size:12px;font-weight:700;color:#0f172a;border-bottom:1px dashed #94a3b8;cursor:pointer;padding:1px 2px}
 .plan-amt:active{background:#e0f2fe}
-.plan-amt-input{width:82px;padding:3px 6px;border:1.5px solid #0891b2;border-radius:6px;font-size:12px;font-weight:700;text-align:right;font-family:inherit;background:#fefce8}
+.plan-amt-input{width:82px;padding:3px 6px;border:1.5px solid #0369a1;border-radius:6px;font-size:12px;font-weight:700;text-align:right;font-family:inherit;background:#fefce8}
 .plan-amt-save{background:#16a34a;color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
 .plan-amt-save:active{background:#15803d}
 .paid-row{margin-top:5px;background:#f0fdf4;border:.5px solid #bbf7d0;border-radius:7px;padding:5px 8px;font-size:10px;color:#166534;cursor:pointer;display:flex;justify-content:space-between;gap:6px;align-items:center}
 .paid-row.over{background:#fef2f2;border-color:#fecaca;color:#991b1b}
 .paid-row:active{filter:brightness(.97)}
-.mini-btn{background:#0891b2;color:#fff;border:none;border-radius:6px;padding:5px 9px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit}
+.mini-btn{background:#0369a1;color:#fff;border:none;border-radius:6px;padding:5px 9px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit}
 .mini-btn:active{background:#0e7490}
 .ib{background:#fff8f0;border:.5px solid #fbbf24;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#92400e;line-height:1.6}
 .wb{background:#fef2f2;border:.5px solid #fca5a5;border-radius:9px;padding:9px 11px;margin-bottom:9px;margin-top:4px;font-size:11px;color:#7f1d1d;line-height:1.6}
@@ -88,18 +95,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .sbtn-row{display:flex;gap:8px;margin-top:12px}
 .sbtn{flex:1;padding:11px;border-radius:9px;border:.5px solid #e4e4e7;background:#f9fafb;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;color:#18181b}
 .sbtn:active{background:#e4e4e7}
-.sbtn.primary{background:linear-gradient(135deg,#0891b2,#ea580c);color:#fff;border-color:transparent}
+.sbtn.primary{background:linear-gradient(135deg,#0c4a6e,#0369a1);color:#fff;border-color:transparent}
 .sbtn.danger{background:#fef2f2;color:#b91c1c;border-color:#fecaca}
 .f-group{margin-bottom:9px}
 .f-group label{display:block;font-size:11px;font-weight:600;color:#4b5563;margin-bottom:3px}
 .f-input{width:100%;padding:9px 10px;border:1px solid #d1d5db;border-radius:7px;font-size:13px;font-family:inherit;background:#fff;color:#18181b}
-.f-input:focus{outline:none;border-color:#0891b2}
+.f-input:focus{outline:none;border-color:#0369a1}
 .f2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .catpick{display:flex;flex-wrap:wrap;gap:5px}
 .catchip{border:1.5px solid #e4e4e7;background:#fff;border-radius:18px;padding:6px 11px;font-size:11px;cursor:pointer;font-family:inherit;color:#3f3f46}
 .catchip.on{color:#fff;border-color:transparent;font-weight:600}
 .amt-big{width:100%;padding:11px;border:1.5px solid #fbbf24;border-radius:9px;font-size:22px;font-weight:700;text-align:right;background:#fefce8;font-family:inherit;color:#18181b}
-.amt-big:focus{outline:none;border-color:#0891b2}
+.amt-big:focus{outline:none;border-color:#0369a1}
 .exp-item{background:#fff;border-radius:9px;padding:9px 11px;margin-bottom:7px;box-shadow:0 1px 4px rgba(0,0,0,.05);border-left:3px solid #ccc}
 .exp-top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
 .exp-nm{font-size:12px;font-weight:600;line-height:1.35;flex:1}
@@ -108,8 +115,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .exp-note{font-size:10px;color:#64748b;margin-top:4px;line-height:1.45;background:#f8fafc;padding:4px 7px;border-radius:5px}
 .exp-acts{display:flex;gap:6px;margin-top:7px}
 .tiny-btn{border:.5px solid #e4e4e7;background:#f9fafb;border-radius:6px;padding:4px 9px;font-size:10px;cursor:pointer;font-family:inherit;color:#3f3f46}
-.day-head{font-size:11px;font-weight:700;color:#0891b2;margin:12px 0 6px;display:flex;justify-content:space-between}
-.fab{position:fixed;bottom:16px;right:50%;transform:translateX(230px);background:linear-gradient(135deg,#0891b2,#ea580c);color:#fff;border:none;border-radius:28px;padding:13px 20px;font-size:13px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;z-index:200;font-family:inherit;display:none}
+.day-head{font-size:11px;font-weight:700;color:#0369a1;margin:12px 0 6px;display:flex;justify-content:space-between}
+.fab{position:fixed;bottom:76px;right:50%;transform:translateX(230px);background:linear-gradient(135deg,#0c4a6e,#0369a1);color:#fff;border:none;border-radius:28px;padding:13px 20px;font-size:13px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.28);cursor:pointer;z-index:140;font-family:inherit;display:none}
 .fab.on{display:block}
 @media(max-width:520px){.fab{right:16px;transform:none}}
 .pie-card{background:#fff;border-radius:10px;padding:12px;box-shadow:0 1px 5px rgba(0,0,0,.06);margin-bottom:11px}
@@ -119,7 +126,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .pie-row{display:grid;grid-template-columns:10px 1fr auto;gap:6px;align-items:center;font-size:10px;color:#3f3f46}
 .pie-dot{width:9px;height:9px;border-radius:50%}
 .pie-total{font-size:12px;font-weight:700;margin-bottom:8px}
-.img-add{display:flex;align-items:center;justify-content:center;gap:5px;border:1.5px dashed #cbd5e1;border-radius:7px;padding:8px;font-size:11px;color:#0891b2;font-weight:500;cursor:pointer;background:#f0f9ff;margin-top:6px}
+.img-add{display:flex;align-items:center;justify-content:center;gap:5px;border:1.5px dashed #cbd5e1;border-radius:7px;padding:8px;font-size:11px;color:#0369a1;font-weight:500;cursor:pointer;background:#f0f9ff;margin-top:6px}
 .img-wrap{position:relative;margin-top:6px}
 .item-img{width:100%;max-height:150px;object-fit:cover;display:block;border-radius:8px;cursor:pointer}
 .img-del{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.55);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;line-height:1}
@@ -140,26 +147,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
   </div>
   <div class="sync-status" id="sync-status"><span id="sync-icon">🔄</span> <span id="sync-label">กำลังเชื่อมต่อ...</span> · 22–26 ม.ค. 2027 · 5 วัน 3 คืน · 13 คน</div>
-  <div class="tabs" id="tabs">
-    <button class="tab on" data-t="db">📊 สรุปงบ</button>
-    <button class="tab" data-t="d1">วัน 1 🚐</button>
-    <button class="tab" data-t="d2">วัน 2 🦐</button>
-    <button class="tab" data-t="d3">วัน 3 🏖</button>
-    <button class="tab" data-t="d4">วัน 4 ⚓</button>
-    <button class="tab" data-t="d5">วัน 5 🏠</button>
-    <button class="tab" data-t="rec">💰 บันทึกจ่ายจริง</button>
-  </div>
 </header>
+
+<div class="daypills" id="daypills">
+  <button class="daypill on" data-d="d1">วัน 1 🚐</button>
+  <button class="daypill" data-d="d2">วัน 2 🦐</button>
+  <button class="daypill" data-d="d3">วัน 3 🏖</button>
+  <button class="daypill" data-d="d4">วัน 4 ⚓</button>
+  <button class="daypill" data-d="d5">วัน 5 🏠</button>
+</div>
 
 <div class="wrap">
 
 <!-- DASHBOARD -->
 <div id="scr-db" class="scr on">
   <div class="kg">
-    <div class="kc"><div class="kl">งบวางแผนรวม</div><div class="kv" id="kp" style="color:#0891b2">฿0</div><div class="ks" id="kpp">ทั้งทริป 5 วัน</div></div>
+    <div class="kc"><div class="kl">งบวางแผนรวม</div><div class="kv" id="kp" style="color:#0369a1">฿0</div><div class="ks" id="kpp">ทั้งทริป 5 วัน</div></div>
     <div class="kc"><div class="kl">จ่ายจริง (บันทึก)</div><div class="kv" id="ka" style="color:#16a34a">฿0</div><div class="ks" id="kas">ยังไม่มีบันทึก</div></div>
     <div class="kc"><div class="kl">คงเหลือจากงบ</div><div class="kv" id="kd" style="color:#d97706">–</div><div class="ks">งบ − จ่ายจริง</div></div>
-    <div class="kc"><div class="kl">เฉลี่ยต่อคน</div><div class="kv" id="kn" style="color:#7c3aed">฿0</div><div class="ks" id="kns">ตามงบแผน 13 คน</div></div>
+    <div class="kc"><div class="kl">เฉลี่ยต่อคน</div><div class="kv" id="kn" style="color:#0284c7">฿0</div><div class="ks" id="kns">ตามงบแผน 13 คน</div></div>
   </div>
 
   <div class="sec">งบแยกหมวด (แผน vs จ่ายจริง)</div>
@@ -210,6 +216,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 </div>
 
 <button class="fab" id="fab" onclick="openRecord()">➕ บันทึกค่าใช้จ่าย</button>
+
+<nav class="bottomnav" id="bottomnav">
+  <button class="navbtn on" data-g="db"><span class="navicon">📊</span>สรุป</button>
+  <button class="navbtn" data-g="days"><span class="navicon">🗓</span>แผนเดินทาง</button>
+  <button class="navbtn" data-g="rec"><span class="navicon">💰</span>บันทึกเงิน</button>
+</nav>
 
 <!-- RECORD MODAL -->
 <div class="panel" id="rec-panel" onclick="closeModal(event,'rec-panel')">
@@ -308,7 +320,7 @@ var CM={V:{l:'🚐รถ',bg:'#fef3c7',cl:'#92400e'},TR:{l:'⛽น้ำมั�
 var CG=[{k:'V',l:'🚐 ค่ารถตู้/รถเช่า',c:'#d97706'},{k:'TR',l:'⛽ น้ำมัน/ทางด่วน',c:'#2563eb'},{k:'H',l:'🏨 ที่พัก',c:'#16a34a'},{k:'F',l:'🍜 อาหาร',c:'#dc2626'},{k:'S',l:'🛍 ซื้อของ/ของฝาก',c:'#db2777'},{k:'A',l:'🎣 กิจกรรม/ค่าเข้า',c:'#7c3aed'},{k:'M',l:'🧾 อื่นๆ/สำรอง',c:'#71717a'}];
 
 var DEFAULT_DAYS=[
- {id:'d1',lbl:'วัน 1',date:'22 ม.ค. (ศ.)',title:'🚐 ออกเดินทางจากแจ้ห่ม ลำปาง',col:'#0891b2',items:[
+ {id:'d1',lbl:'วัน 1',date:'22 ม.ค. (ศ.)',title:'🚐 ออกเดินทางจากแจ้ห่ม ลำปาง',col:'#0369a1',items:[
   {id:'i1_1',t:'18:00',n:'🧳 เตรียมกระเป๋า ของใช้ นัดรวมพลที่บ้าน อ.แจ้ห่ม',c:'M',p:0,pl:null},
   {id:'i1_2',t:'19:00',n:'🚐 ค่าเช่ารถตู้ 5 วัน (22-26 ม.ค.) ไม่รวมน้ำมัน',c:'V',p:10000,pl:null},
   {id:'i1_3',t:'19:00',n:'⛽ ค่าน้ำมันรถตู้ทั้งทริป ~1,850 กม. ÷ 10 กม./ลิตร × ฿40.69',c:'TR',p:7600,pl:null},
@@ -318,7 +330,7 @@ var DEFAULT_DAYS=[
   {id:'i1_7',t:'21:30',n:'☕ แวะพักรถ ซื้อของว่าง/กาแฟ/น้ำ ระหว่างทาง',c:'F',p:1000,pl:null},
   {id:'i1_8',t:'23:30',n:'🌙 ขับข้ามคืน สลับคนขับ แวะปั๊มใหญ่ทุก 2-3 ชม.',c:'M',p:0,pl:null}
  ]},
- {id:'d2',lbl:'วัน 2',date:'23 ม.ค. (ส.)',title:'🦐 ปทุมธานี → บางแสน ชลบุรี',col:'#16a34a',items:[
+ {id:'d2',lbl:'วัน 2',date:'23 ม.ค. (ส.)',title:'🦐 ปทุมธานี → บางแสน ชลบุรี',col:'#0c4a6e',items:[
   {id:'i2_1',t:'06:30',n:'🛬 ถึงปทุมธานี พักรถหลังขับข้ามคืน',c:'M',p:0,pl:null},
   {id:'i2_2',t:'07:30',n:'🍽 อาหารเช้าที่ "บ้านอ้ายเค" ปทุมธานี (13 คน)',c:'F',p:2600,pl:null},
   {id:'i2_3',t:'09:00',n:'🚗 ทีมกรุงเทพ 3 คน รับรถเช่า 4 วัน (23-26 ม.ค. รวมน้ำมันแล้ว)',c:'V',p:6000,pl:null},
@@ -342,7 +354,7 @@ var DEFAULT_DAYS=[
   {id:'i3_9',t:'18:00',n:'🦑 ซื้ออาหารทะเล + มื้อเย็นริมทะเลสัตหีบ (13 คน)',c:'F',p:4500,pl:'sattahipPier'},
   {id:'i3_10',t:'20:00',n:'🎣 ค่าเช่าอุปกรณ์ตกหมึก/ไฟล่อหมึก',c:'A',p:800,pl:'sattahipPier'}
  ]},
- {id:'d4',lbl:'วัน 4',date:'25 ม.ค. (จ.)',title:'⚓ เที่ยวสัตหีบเต็มวัน',col:'#ea580c',items:[
+ {id:'d4',lbl:'วัน 4',date:'25 ม.ค. (จ.)',title:'⚓ เที่ยวสัตหีบเต็มวัน',col:'#0ea5e9',items:[
   {id:'i4_1',t:'07:30',n:'🍳 อาหารเช้าที่พักสัตหีบ (13 คน)',c:'F',p:1600,pl:null},
   {id:'i4_2',t:'08:30',n:'🏊 หาดน้ำใส เล่นน้ำ ถ่ายรูป (ค่าเช่าร่ม/เสื่อ)',c:'A',p:800,pl:'hatnamsai'},
   {id:'i4_3',t:'10:30',n:'⚓ เรือหลวงจักรีนฤเบศร (เข้าฟรี · พกบัตรประชาชนทุกคน)',c:'A',p:0,pl:'chakri'},
@@ -352,7 +364,7 @@ var DEFAULT_DAYS=[
   {id:'i4_7',t:'18:00',n:'🔥 มื้อเย็นปิ้งย่างซีฟู้ดที่พัก คืนสุดท้าย (13 คน)',c:'F',p:4500,pl:null},
   {id:'i4_8',t:'20:00',n:'🎁 ซื้อของฝาก ของทะเลแห้ง ของฝากชลบุรี',c:'S',p:3000,pl:null}
  ]},
- {id:'d5',lbl:'วัน 5',date:'26 ม.ค. (อ.)',title:'🏠 เดินทางกลับลำปาง',col:'#dc2626',items:[
+ {id:'d5',lbl:'วัน 5',date:'26 ม.ค. (อ.)',title:'🏠 เดินทางกลับลำปาง',col:'#38bdf8',items:[
   {id:'i5_1',t:'06:30',n:'🍳 อาหารเช้า เก็บของ เช็คเอาต์ที่พักสัตหีบ',c:'F',p:1600,pl:null},
   {id:'i5_2',t:'08:00',n:'🚗 ทีมกรุงเทพคืนรถเช่า / แยกย้ายกลับ',c:'M',p:0,pl:null},
   {id:'i5_3',t:'08:30',n:'👋 ส่งเบนลงที่ชลบุรี',c:'M',p:0,pl:null},
@@ -375,10 +387,10 @@ var docRef=db.collection('famtrip2027').doc('data');
 var firstSnapshot=true;
 function setSyncStatus(state){
  var ic=document.getElementById('sync-icon'),lb=document.getElementById('sync-label');if(!ic||!lb)return;
- if(state==='synced'){ic.textContent='🟢';lb.textContent='ซิงก์เรียบร้อย';}
+ if(state==='synced'){ic.textContent='✅';lb.textContent='ซิงก์เรียบร้อย';}
  else if(state==='syncing'){ic.textContent='🔄';lb.textContent='กำลังบันทึก...';}
  else if(state==='offline'){ic.textContent='📶';lb.textContent='ออฟไลน์ (ข้อมูลอาจไม่ใหม่ล่าสุด)';}
- else if(state==='error'){ic.textContent='🔴';lb.textContent='บันทึกไม่สำเร็จ ลองใหม่';}
+ else if(state==='error'){ic.textContent='⚠️';lb.textContent='บันทึกไม่สำเร็จ ลองใหม่';}
  else{ic.textContent='🔄';lb.textContent='กำลังเชื่อมต่อ...';}
 }
 docRef.onSnapshot({includeMetadataChanges:true},function(snap){
@@ -412,7 +424,7 @@ function closePanel(id){document.getElementById(id).classList.remove('on');}
 function closeModal(e,id){if(!e||e.target===document.getElementById(id))closePanel(id);}
 function shareUrl(){return location.href.split('#')[0].split('?')[0];}
 function openShare(){document.getElementById('share-url').textContent=shareUrl();document.getElementById('share-panel').classList.add('on');}
-function copyShareUrl(){var u=document.getElementById('share-url').textContent;if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){showToast('คัดลอกลิงก์เรียบร้อย! 🎉','#0891b2');closePanel('share-panel');});}else{showToast('กดค้างที่ลิงก์เพื่อคัดลอก','#71717a');}}
+function copyShareUrl(){var u=document.getElementById('share-url').textContent;if(navigator.clipboard){navigator.clipboard.writeText(u).then(function(){showToast('คัดลอกลิงก์เรียบร้อย! 🎉','#0369a1');closePanel('share-panel');});}else{showToast('กดค้างที่ลิงก์เพื่อคัดลอก','#71717a');}}
 function resetAll(){if(!confirm('รีเซ็ตแผนกลับเป็นค่าตั้งต้น สำหรับทุกคน? (รายการจ่ายจริงจะยังอยู่)'))return;DAYS=JSON.parse(JSON.stringify(DEFAULT_DAYS));save();closePanel('share-panel');renderAllDays();dash();showToast('รีเซ็ตแผนแล้ว','#71717a');}
 
 /* ---------- PLAN DAYS ---------- */
@@ -490,7 +502,7 @@ function openRecord(day,cat,name,amt,pid){
  setTimeout(function(){document.getElementById('rec-amt').focus();},250);
 }
 function quickRecord(day,cat,name,amt,pid){openRecord(day,cat,name,amt,pid);}
-function currentDay(){var t=document.querySelector('.tab.on');var k=t?t.dataset.t:'';return /^d\d$/.test(k)?k:'d1';}
+function currentDay(){return /^d\d$/.test(currentDayTab)?currentDayTab:'d1';}
 function editExpense(id){
  var e=null;EXP.forEach(function(x){if(x.id===id)e=x;});if(!e)return;
  recEditId=id;recCat=e.cat;recPid=e.pid||null;
@@ -506,16 +518,28 @@ function editExpense(id){
 function saveExpense(){
  var amt=Number(document.getElementById('rec-amt').value);
  if(!amt||amt<=0){showToast('ใส่จำนวนเงินก่อนนะ','#dc2626');return;}
+ var prevDay=null;
+ if(recEditId){EXP.forEach(function(x){if(x.id===recEditId)prevDay=x.day;});}
  var obj={cat:recCat,day:document.getElementById('rec-day').value,pid:recPid||null,
   name:document.getElementById('rec-name').value.trim()||(CG.filter(function(c){return c.k===recCat;})[0].l),
   amt:amt,by:document.getElementById('rec-by').value.trim(),note:document.getElementById('rec-note').value.trim()};
  if(recEditId){EXP.forEach(function(x,i){if(x.id===recEditId){obj.id=recEditId;obj.ts=x.ts;EXP[i]=obj;}});}
  else{obj.id='e'+Date.now();obj.ts=Date.now();EXP.push(obj);}
- save();closePanel('rec-panel');renderExpenses();dash();renderAllDays();
+ save();closePanel('rec-panel');renderExpenses();dash();
+ if(/^d\d$/.test(obj.day))renderDayScreen(obj.day);
+ if(prevDay&&prevDay!==obj.day&&/^d\d$/.test(prevDay))renderDayScreen(prevDay);
  showToast(recEditId?'แก้ไขเรียบร้อย ✓':'บันทึก '+money(amt)+' แล้ว ✓','#16a34a');
  recEditId=null;recPid=null;
 }
-function delExpense(id){if(!confirm('ลบรายการนี้?'))return;EXP=EXP.filter(function(x){return x.id!==id;});if(IMG[id]){storage.ref('famtrip2027-images/'+id+'.jpg').delete().catch(function(){});delete IMG[id];}save();renderExpenses();dash();renderAllDays();closePanel('cat-panel');showToast('ลบแล้ว','#71717a');}
+function delExpense(id){
+ if(!confirm('ลบรายการนี้?'))return;
+ var expDay=null;EXP.forEach(function(x){if(x.id===id)expDay=x.day;});
+ EXP=EXP.filter(function(x){return x.id!==id;});
+ if(IMG[id]){storage.ref('famtrip2027-images/'+id+'.jpg').delete().catch(function(){});delete IMG[id];}
+ save();renderExpenses();dash();
+ if(expDay&&/^d\d$/.test(expDay))renderDayScreen(expDay);
+ closePanel('cat-panel');showToast('ลบแล้ว','#71717a');
+}
 
 function openItemExpenses(itemId,itemName,planAmt){
  var ex=EXP.filter(function(e){return e.pid===itemId;});
@@ -731,21 +755,35 @@ function delItem(i){tempItems.splice(i,1);buildEditorHTML();}
 function saveEditorChanges(){
  var id=document.getElementById('f-day').value;
  DAYS.forEach(function(d,i){if(d.id===id)DAYS[i].items=sortT(JSON.parse(JSON.stringify(tempItems)));});
- save();dash();renderAllDays();closePanel('editor-panel');showToast('อัปเดตแผนเรียบร้อย! 🎉','#0891b2');
+ save();dash();renderDayScreen(id);closePanel('editor-panel');showToast('อัปเดตแผนเรียบร้อย! 🎉','#0369a1');
 }
 
-/* ---------- TABS ---------- */
-document.getElementById('tabs').addEventListener('click',function(e){
- var btn=e.target.closest('.tab');if(!btn)return;
- var t=btn.dataset.t;
- document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('on');});
+/* ---------- NAVIGATION ---------- */
+var currentDayTab='d1',currentGroup='db';
+function selectGroup(g){
+ currentGroup=g;
+ document.querySelectorAll('.navbtn').forEach(function(b){b.classList.toggle('on',b.dataset.g===g);});
  document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
- btn.classList.add('on');document.getElementById('scr-'+t).classList.add('on');
- document.getElementById('fab').classList.toggle('on',t==='rec');
- if(/^d\d$/.test(t))renderDayScreen(t);
- if(t==='rec')renderExpenses();
- if(t==='db')dash();
- btn.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});window.scrollTo(0,0);
+ document.getElementById('daypills').style.display=(g==='days')?'flex':'none';
+ document.getElementById('fab').classList.toggle('on',g==='rec');
+ if(g==='db'){document.getElementById('scr-db').classList.add('on');dash();}
+ else if(g==='rec'){document.getElementById('scr-rec').classList.add('on');renderExpenses();}
+ else if(g==='days'){selectDay(currentDayTab);}
+ window.scrollTo(0,0);
+}
+function selectDay(d){
+ currentDayTab=d;
+ document.querySelectorAll('.daypill').forEach(function(b){b.classList.toggle('on',b.dataset.d===d);});
+ document.querySelectorAll('.scr').forEach(function(s){s.classList.remove('on');});
+ var scr=document.getElementById('scr-'+d);if(scr)scr.classList.add('on');
+ renderDayScreen(d);
+ window.scrollTo(0,0);
+}
+document.getElementById('bottomnav').addEventListener('click',function(e){
+ var b=e.target.closest('.navbtn');if(!b)return;selectGroup(b.dataset.g);
+});
+document.getElementById('daypills').addEventListener('click',function(e){
+ var b=e.target.closest('.daypill');if(!b)return;selectDay(b.dataset.d);
 });
 
 dash();renderExpenses();
